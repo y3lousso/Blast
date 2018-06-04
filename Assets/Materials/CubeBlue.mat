@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MKDemoMat1View2
+  m_Name: CubeBlue
   m_Shader: {fileID: 4800000, guid: 3116dc5d2d459014eb4d26279676bac8, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 1
@@ -19,11 +19,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Illum:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: c43738b2b5ea39e488158498ed03aa6e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MKGlowTex:
-        m_Texture: {fileID: 2800000, guid: 31c1fc2d8ffa0fc4e94e9c2428ca194c, type: 3}
+        m_Texture: {fileID: 2800000, guid: c43738b2b5ea39e488158498ed03aa6e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -33,9 +33,9 @@ Material:
     m_Floats:
     - _EmissionLM: 0
     - _MKGlowOffSet: 0
-    - _MKGlowPower: 0.05
-    - _MKGlowTexStrength: 0.21
+    - _MKGlowPower: 0.5
+    - _MKGlowTexStrength: 10
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _MKGlowColor: {r: 0.009242773, g: 1, b: 0, a: 1}
-    - _MKGlowTexColor: {r: 0, g: 1, b: 0.08965492, a: 1}
+    - _MKGlowColor: {r: 0, g: 0.21733475, b: 1, a: 1}
+    - _MKGlowTexColor: {r: 0.10681105, g: 0, b: 1, a: 1}
