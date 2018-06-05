@@ -12,56 +12,166 @@ MonoBehaviour:
   m_Name: Escape
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: d27b891fdf1903340aa438b505509ef4, type: 3}
-  beatPerMinute: 90
-  startingOffset: 1
+  beatPerMinute: 175
+  startingOffset: 1.4
   targetCubesData:
   - Id: 1
     horizontalPosition: -1
     vecticalPosition: 0
     orientation: 0
     cubeColor: 2
-  - Id: 1
-    horizontalPosition: 1
-    vecticalPosition: 0
-    orientation: 2
-    cubeColor: 1
-  - Id: 2
-    horizontalPosition: -1
-    vecticalPosition: 0
-    orientation: 2
-    cubeColor: 2
-  - Id: 2
+  - Id: 3
     horizontalPosition: 1
     vecticalPosition: 0
     orientation: 0
     cubeColor: 1
-  - Id: 3
-    horizontalPosition: -2
-    vecticalPosition: 1
-    orientation: 3
-    cubeColor: 2
   - Id: 4
-    horizontalPosition: 2
-    vecticalPosition: 1
-    orientation: 1
-    cubeColor: 1
-  - Id: 5
-    horizontalPosition: -2
+    horizontalPosition: -3
     vecticalPosition: 0
-    orientation: 3
+    orientation: 0
     cubeColor: 2
   - Id: 6
-    horizontalPosition: 2
+    horizontalPosition: -3
+    vecticalPosition: 0
+    orientation: 2
+    cubeColor: 2
+  - Id: 7
+    horizontalPosition: 3
+    vecticalPosition: 1
+    orientation: 1
+    cubeColor: 1
+  - Id: 9
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 11
+    horizontalPosition: 1
     vecticalPosition: 0
     orientation: 1
     cubeColor: 1
-  - Id: 7
-    horizontalPosition: -2
-    vecticalPosition: -1
+  - Id: 12
+    horizontalPosition: -3
+    vecticalPosition: 0
     orientation: 3
     cubeColor: 2
-  - Id: 7
-    horizontalPosition: 2
-    vecticalPosition: -1
+  - Id: 14
+    horizontalPosition: -3
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 15
+    horizontalPosition: 1
+    vecticalPosition: 1
     orientation: 1
+    cubeColor: 1
+  - Id: 18
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 20
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 21
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 2
+    cubeColor: 2
+  - Id: 23
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 2
+    cubeColor: 1
+  - Id: 24
+    horizontalPosition: -1
+    vecticalPosition: 1
+    orientation: 3
+    cubeColor: 2
+  - Id: 26
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 28
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 29
+    horizontalPosition: 3
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 31
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 32
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 34
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 2
+    cubeColor: 2
+  - Id: 34
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 2
+    cubeColor: 1
+  - Id: 40
+    horizontalPosition: -3
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 45
+    horizontalPosition: 3
+    vecticalPosition: 1
+    orientation: 1
+    cubeColor: 1
+  - Id: 50
+    horizontalPosition: -3
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 22
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 23
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 24
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 25
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 2
+    cubeColor: 2
+  - Id: 25
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 2
+    cubeColor: 1
+  - Id: 99
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 99
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
     cubeColor: 1

@@ -32,15 +32,19 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         audioSource = GetComponent<AudioSource>();
-        StartCoroutine("Play");
+        StartCoroutine("StartMusic");
+        StartCoroutine("StartSpawningCubes");
     }
 
-    private IEnumerator Play()
-    {      
+    private IEnumerator StartMusic()
+    {
         yield return new WaitForSeconds(audioData.startingOffset);
         audioSource.clip = audioData.audioClip;
         audioSource.Play();
-        
+    }
+
+    private IEnumerator StartSpawningCubes()
+    {          
         while (audioSource.time < audioData.audioClip.length)
         {
             currentTimeIndicator = audioSource.time;

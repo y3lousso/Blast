@@ -7,27 +7,27 @@ public class TargetCubeData
 {
     [SerializeField] public int Id = 0;
     [SerializeField] public HorizontalPosition horizontalPosition = HorizontalPosition.Left;
-    [SerializeField] public VecticalPosition vecticalPosition = VecticalPosition.Mid;
+    [SerializeField] public VecticalPosition vecticalPosition = VecticalPosition.Bot;
     [SerializeField] public Orientation orientation = Orientation.Left;
     [SerializeField] public CubeColor cubeColor = CubeColor.Blue;
 }
 
 public enum HorizontalPosition
 {
-    ExtLeft = -2, Left = -1, Right = 1, ExtRight = 2
+    ExtLeft = -3, Left = -1, Right = 1, ExtRight = 3
 };
 
 public enum VecticalPosition
 {
-    Bot = -1, Mid = 0, Top = 1
+    Bot = 0, Top = 1
 }
 
 public enum Orientation
 {
-    Bot = 0, 
-    Right = 1,
-    Top = 2,
-    Left = 3
+    Top = 0,
+    Left = 1,
+    Bot = 2,
+    Right = 3
 }
 
 public enum CubeColor
