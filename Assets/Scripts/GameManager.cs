@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour {
     void Start () {
         audioSource = GetComponent<AudioSource>();
         StartCoroutine("StartMusic");
-        StartCoroutine("StartSpawningCubes");
+        InvokeRepeating("StartSpawningCubes2", audioData.startingOffset, 60f / audioData.beatPerMinute);
     }
 
     private IEnumerator StartMusic()
@@ -43,22 +43,11 @@ public class GameManager : MonoBehaviour {
         audioSource.Play();
     }
 
-    private IEnumerator StartSpawningCubes()
-    {          
-        while (audioSource.time < audioData.audioClip.length)
-        {
-            currentTimeIndicator = audioSource.time;
-            if (timeBeforeNextBeat <= 0)
-            {
-                targetCubeSpawner.SpawnTargetCubes( audioData.targetCubesData.FindAll(t=>t.Id == currentIndex) );
-                timeBeforeNextBeat = 60f / audioData.beatPerMinute;
-                currentIndex++;
-            }
-            else
-            {
-                timeBeforeNextBeat -= .1f;
-            }
-            yield return new WaitForSeconds(.1f);
-        }
+    private void StartSpawningCubes2()
+    {
+        targetCubeSpawner.SpawnTargetCubes(audioData.targetCubesData.FindAll(t => t.Id == currentIndex));
+        currentIndex++;
+        currentTimeIndicator = audioSource.time;
+        Debug.Log(currentTimeIndicator);
     }
 }
