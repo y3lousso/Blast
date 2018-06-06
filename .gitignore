@@ -22,6 +22,7 @@ ExportedObj/
 *.booproj
 *.svd
 *.pdb
+*.meta
 
 # Unity3D generated meta files
 *.pidb.meta
@@ -32,3 +33,5 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+Assets/_Imports/Nested Prefabs/Editor/CustomBuildPipeline.cs
+Assets/_Imports/Nested Prefabs/Editor/NestedPrefabsPreferences.cs
