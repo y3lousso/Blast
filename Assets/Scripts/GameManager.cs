@@ -12,6 +12,10 @@ public class GameManager : MonoBehaviour {
 
     [Range(1, 10)]
     public float targetCubeSpeed = 5f;
+    [Range(0, 1)]
+    public float slashAngleThreshold = .5f;
+    [Range(0, 1)]
+    public float slashIntensityThreshold = .5f;
 
     public float timeBeforeNextBeat = 0f;
     public float currentTimeIndicator = 0;
@@ -33,7 +37,7 @@ public class GameManager : MonoBehaviour {
     void Start () {
         audioSource = GetComponent<AudioSource>();
         StartCoroutine("StartMusic");
-        InvokeRepeating("StartSpawningCubes2", audioData.startingOffset, 60f / audioData.beatPerMinute);
+        InvokeRepeating("StartSpawningCubes", audioData.startingOffset, 60f / audioData.beatPerMinute);
     }
 
     private IEnumerator StartMusic()
@@ -43,11 +47,10 @@ public class GameManager : MonoBehaviour {
         audioSource.Play();
     }
 
-    private void StartSpawningCubes2()
+    private void StartSpawningCubes()
     {
         targetCubeSpawner.SpawnTargetCubes(audioData.targetCubesData.FindAll(t => t.Id == currentIndex));
         currentIndex++;
         currentTimeIndicator = audioSource.time;
-        Debug.Log(currentTimeIndicator);
     }
 }

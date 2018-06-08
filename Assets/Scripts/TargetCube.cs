@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class TargetCube : MonoBehaviour {
 
-    private bool isActivated = false;
     private float speed;
     public CubeColor cubeColor;
+
+    public AudioClip explodeClip;
 
     public struct TargetCubeEventArgs
     {
@@ -17,21 +18,28 @@ public class TargetCube : MonoBehaviour {
 
     public static event TargetCubeEventHandler OnCubeDestroy;
 
-
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         speed = GameManager.Instance.targetCubeSpeed;
-
-        isActivated = true;
     }
 	
 	// Update is called once per frame
-	void Update () {
-		if(isActivated == true)
-        {
-            transform.Translate(- transform.forward * speed * Time.deltaTime);
-        }
+	void Update ()
+    {
+        transform.Translate(- transform.forward * speed * Time.deltaTime);
 	}
+
+    public void Explode()
+    {
+        AudioSource.PlayClipAtPoint(explodeClip, transform.position);
+        Destroy(gameObject);
+    }
+
+    public void Miss()
+    {
+        Destroy(gameObject);
+    }
 }
 
 

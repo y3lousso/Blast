@@ -6,22 +6,42 @@ public class Saber : MonoBehaviour {
 
     public CubeColor saberColor = CubeColor.Blue;
 
+    private Transform saberEdge;
+    private Vector3 saberEdgeLastFramePosition = new Vector3();
+
+    public Vector3 saberEdgeVelocity = new Vector3();
+
+    public void Awake()
+    {
+        saberEdge = transform.Find("SaberEdge");    
+    }
+
+    public void Update()
+    {
+        saberEdgeVelocity = saberEdge.position - saberEdgeLastFramePosition;
+        saberEdgeLastFramePosition = saberEdge.position;
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         TargetCube targetCube = other.GetComponentInParent<TargetCube>();
 
-        if (targetCube != null && other.CompareTag("TargetCube_CorrectSide") && targetCube.cubeColor == saberColor)
-        {            
-            Destroy(targetCube.gameObject);
-        }
-        else if(targetCube != null &&  other.CompareTag("TargetCube_WrongSide"))
-        {          
-            foreach (Collider col in targetCube.GetComponentsInChildren<Collider>())
+        if (targetCube != null)
+        {
+            bool hasEnoughVelocity = (saberEdgeVelocity.magnitude >= GameManager.Instance.slashIntensityThreshold) ? true : false;
+            bool hasCorrectAngle = (Vector3.Dot(-targetCube.transform.up, saberEdgeVelocity.normalized) >= GameManager.Instance.slashAngleThreshold) ? true : false;
+
+            Debug.Log("Velocity : " + saberEdgeVelocity.magnitude );
+            Debug.Log("Angle : " + hasCorrectAngle);
+
+            if (hasEnoughVelocity && hasCorrectAngle && saberColor == targetCube.cubeColor)
             {
-                col.enabled = false;
+                targetCube.Explode();
             }
-            //TODO : Haptic -> go get script from UnrealInstructor
-            //e.triggeredObject.
+            else
+            {
+                targetCube.Miss();
+            }
         }
     }
 }
