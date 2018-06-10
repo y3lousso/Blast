@@ -26,7 +26,6 @@ GameObject:
   - component: {fileID: 54677944462845956}
   - component: {fileID: 114334538149059350}
   - component: {fileID: 114044054255130454}
-  - component: {fileID: 65944013004149452}
   m_Layer: 0
   m_Name: RedSaber
   m_TagString: Untagged
@@ -43,6 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4118831889100138}
   - component: {fileID: 114281127363646254}
+  - component: {fileID: 65953911069117688}
   m_Layer: 0
   m_Name: SaberEdge
   m_TagString: Untagged
@@ -135,18 +135,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!65 &65944013004149452
+--- !u!65 &65953911069117688
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1886930150745694}
+  m_GameObject: {fileID: 1968110605174556}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.074196815, y: 1.35, z: 0.08069613}
-  m_Center: {x: 0, y: 0.00000005960466, z: 0}
+  m_Size: {x: 0.07314262, y: 0.8996566, z: 0.09162734}
+  m_Center: {x: 0.0013202876, y: -0.3036712, z: -0.00000010989608}
 --- !u!114 &114027796400373372
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -31,12 +31,10 @@ public class Saber : MonoBehaviour {
             bool hasEnoughVelocity = (saberEdgeVelocity.magnitude >= GameManager.Instance.slashIntensityThreshold) ? true : false;
             bool hasCorrectAngle = (Vector3.Dot(-targetCube.transform.up, saberEdgeVelocity.normalized) >= GameManager.Instance.slashAngleThreshold) ? true : false;
 
-            Debug.Log("Velocity : " + saberEdgeVelocity.magnitude );
-            Debug.Log("Angle : " + hasCorrectAngle);
-
             if (hasEnoughVelocity && hasCorrectAngle && saberColor == targetCube.cubeColor)
             {
                 targetCube.Explode();
+                VRControllerManager.instance.PlayHaptic(transform.parent.gameObject, 7, .1f, .01f);
             }
             else
             {

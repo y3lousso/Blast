@@ -8,6 +8,7 @@ public class TargetCube : MonoBehaviour {
     public CubeColor cubeColor;
 
     public AudioClip explodeClip;
+    public AudioClip missClip;
 
     public struct TargetCubeEventArgs
     {
@@ -32,12 +33,13 @@ public class TargetCube : MonoBehaviour {
 
     public void Explode()
     {
-        AudioSource.PlayClipAtPoint(explodeClip, transform.position);
+        AudioSource.PlayClipAtPoint(explodeClip, transform.position);       
         Destroy(gameObject);
     }
 
     public void Miss()
     {
+        AudioSource.PlayClipAtPoint(missClip, transform.position);
         Destroy(gameObject);
     }
 }

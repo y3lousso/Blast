@@ -19,11 +19,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Illum:
-        m_Texture: {fileID: 2800000, guid: c43738b2b5ea39e488158498ed03aa6e, type: 3}
+        m_Texture: {fileID: 2800000, guid: b360d9c3c97056c4a80235a0b76c46e9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MKGlowTex:
-        m_Texture: {fileID: 2800000, guid: c43738b2b5ea39e488158498ed03aa6e, type: 3}
+        m_Texture: {fileID: 2800000, guid: b360d9c3c97056c4a80235a0b76c46e9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -36,6 +36,6 @@ Material:
     - _MKGlowPower: 0.5
     - _MKGlowTexStrength: 10
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0, g: 0, b: 0, a: 1}
     - _MKGlowColor: {r: 0, g: 0.21733475, b: 1, a: 1}
     - _MKGlowTexColor: {r: 0.10681105, g: 0, b: 1, a: 1}

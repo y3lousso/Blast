@@ -41,7 +41,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1357859710106012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.3190546, y: -3.2764015, z: -1.0036969}
+  m_LocalPosition: {x: -1.9832244, y: -4.133498, z: 13.6658745}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 0}
@@ -115,8 +115,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
-  m_Center: {x: 0.00000011920928, y: 0.00000001490116, z: -0.00000011920928}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0.00000011920929, y: 0.000000014901161, z: -0.00000011920929}
 --- !u!114 &114291537697596238
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -130,6 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cubeColor: 0
   explodeClip: {fileID: 8300000, guid: e127def09e266b14ab427ac01deda0dd, type: 3}
+  missClip: {fileID: 8300000, guid: e858d47e8b4a50f4fb3a48a0f80cb7d8, type: 3}
 --- !u!114 &114365545153834558
 MonoBehaviour:
   m_ObjectHideFlags: 1

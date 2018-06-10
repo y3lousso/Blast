@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 23880824849347020}
   - component: {fileID: 33353929884438406}
   - component: {fileID: 114537697863806768}
-  - component: {fileID: 65147833101005004}
   - component: {fileID: 114819032411853186}
   - component: {fileID: 114978741307368898}
   - component: {fileID: 114268061380734006}
@@ -43,6 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4271054064288312}
   - component: {fileID: 114443462754588406}
+  - component: {fileID: 65234996646035126}
   m_Layer: 0
   m_Name: SaberEdge
   m_TagString: Untagged
@@ -135,18 +135,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!65 &65147833101005004
+--- !u!65 &65234996646035126
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1590155572079634}
+  m_GameObject: {fileID: 1991351734301154}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.082609795, y: 1.1889286, z: 0.08984602}
-  m_Center: {x: 0, y: 0.06054035, z: 1.5257236e-15}
+  m_Size: {x: 0.07314262, y: 0.8996566, z: 0.09162734}
+  m_Center: {x: 0.0013202876, y: -0.3036712, z: -0.00000010989608}
 --- !u!114 &114268061380734006
 MonoBehaviour:
   m_ObjectHideFlags: 1
