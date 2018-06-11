@@ -7,8 +7,10 @@ public class TargetCube : MonoBehaviour {
     private float speed;
     public CubeColor cubeColor;
 
-    public AudioClip explodeClip;
-    public AudioClip missClip;
+    [SerializeField] AudioClip explodeClip;
+    [SerializeField] AudioClip missClip;
+
+    [SerializeField] ParticleSystem explodeParticle;
 
     public struct TargetCubeEventArgs
     {
@@ -33,7 +35,9 @@ public class TargetCube : MonoBehaviour {
 
     public void Explode()
     {
-        AudioSource.PlayClipAtPoint(explodeClip, transform.position);       
+        AudioSource.PlayClipAtPoint(explodeClip, transform.position);
+        ParticleSystem p = Instantiate(explodeParticle,transform.position, transform.rotation);
+        Destroy(p.gameObject, 1f);
         Destroy(gameObject);
     }
 

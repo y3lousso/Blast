@@ -26,6 +26,25 @@ public class AtmosphereManager : MonoBehaviour {
     void Start () {
         materialSwappers = new List<MaterialSwapper>();
         materialSwappers.AddRange(FindObjectsOfType<MaterialSwapper>());
+        StartCoroutine("ToggleColorTest");
+    }
+
+    public IEnumerator ToggleColorTest()
+    {
+        int i = 0;
+        while (true)
+        {
+            yield return new WaitForSeconds(5f);
+            if(i%2 == 0)
+            {
+                SetAmbiance(CubeColor.Blue);
+            }
+            else
+            {
+                SetAmbiance(CubeColor.Red);
+            }
+            i++;
+        }
     }
 	
 	public void SetAmbiance(CubeColor color)
