@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Blue
-  m_Shader: {fileID: 4800000, guid: f6ce161d8fc0fce4faed0cfd5a66af3e, type: 3}
+  m_Shader: {fileID: 4800000, guid: 3116dc5d2d459014eb4d26279676bac8, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
@@ -71,8 +71,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_CBE128C4: 0
-    - Vector1_ED143805: 0
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -93,7 +91,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - Color_44B3DF60: {r: 0, g: 0.09729481, b: 1, a: 0}
     - _Color: {r: 0, g: 0.054581404, b: 1, a: 1}
     - _EmissionColor: {r: 0.025951385, g: 0, b: 1, a: 1}
     - _MKGlowColor: {r: 0.03579378, g: 0, b: 1, a: 1}
