@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: CubeBlue
-  m_Shader: {fileID: 4800000, guid: f6ce161d8fc0fce4faed0cfd5a66af3e, type: 3}
+  m_Shader: {fileID: 4800000, guid: 3116dc5d2d459014eb4d26279676bac8, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
@@ -18,10 +18,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture_8E05E03C:
-        m_Texture: {fileID: 2800000, guid: 4561ef0b246ee42489a9c2dd8d4135fa, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _Illum:
         m_Texture: {fileID: 2800000, guid: b360d9c3c97056c4a80235a0b76c46e9, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -35,16 +31,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_72868777: 0
-    - Vector1_CBE128C4: 0
-    - Vector1_ED143805: 0
     - _EmissionLM: 0
     - _MKGlowOffSet: 0
     - _MKGlowPower: 0.5
     - _MKGlowTexStrength: 10
     m_Colors:
-    - Color_44B3DF60: {r: 0, g: 0.08923578, b: 1, a: 0}
-    - Color_E37435B3: {r: 0, g: 0.11046457, b: 1, a: 0}
     - _Color: {r: 0, g: 0.08572531, b: 1, a: 1}
     - _MKGlowColor: {r: 0, g: 0.21733475, b: 1, a: 1}
     - _MKGlowTexColor: {r: 0.10681105, g: 0, b: 1, a: 1}

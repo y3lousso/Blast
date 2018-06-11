@@ -18,10 +18,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture_8E05E03C:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -75,7 +71,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_72868777: 1
     - Vector1_CBE128C4: 0
     - Vector1_ED143805: 0
     - _BumpScale: 1
@@ -99,7 +94,6 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - Color_44B3DF60: {r: 0, g: 0.09729481, b: 1, a: 0}
-    - Color_E37435B3: {r: 0, g: 0.24676347, b: 1, a: 0}
     - _Color: {r: 0, g: 0.054581404, b: 1, a: 1}
     - _EmissionColor: {r: 0.025951385, g: 0, b: 1, a: 1}
     - _MKGlowColor: {r: 0.03579378, g: 0, b: 1, a: 1}
