@@ -22,13 +22,29 @@ GameObject:
   - component: {fileID: 23875238884037776}
   - component: {fileID: 33506490742453220}
   - component: {fileID: 114120505004692318}
-  - component: {fileID: 65435039995699434}
   - component: {fileID: 114027796400373372}
   - component: {fileID: 54677944462845956}
   - component: {fileID: 114334538149059350}
   - component: {fileID: 114044054255130454}
   m_Layer: 0
   m_Name: RedSaber
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1968110605174556
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4118831889100138}
+  - component: {fileID: 114281127363646254}
+  - component: {fileID: 65953911069117688}
+  m_Layer: 0
+  m_Name: SaberEdge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,10 +59,24 @@ Transform:
   m_LocalRotation: {x: 0.70710707, y: -0, z: -0, w: 0.7071066}
   m_LocalPosition: {x: 0, y: -0, z: 0.348}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4118831889100138}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90.00001, y: 0, z: 0}
+--- !u!4 &4118831889100138
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1968110605174556}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.519, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4109540233795812}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23875238884037776
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -105,18 +135,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!65 &65435039995699434
+--- !u!65 &65953911069117688
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1886930150745694}
+  m_GameObject: {fileID: 1968110605174556}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 1, z: 0.1}
-  m_Center: {x: 0, y: 0.24, z: 0}
+  m_Size: {x: 0.07314262, y: 0.8996566, z: 0.09162734}
+  m_Center: {x: 0.0013202876, y: -0.3036712, z: -0.00000010989608}
 --- !u!114 &114027796400373372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,6 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saberColor: 2
+  saberEdgeVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &114044054255130454
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2982,6 +3013,18 @@ MonoBehaviour:
   m_selectedFaces: 
   m_SelectedEdges: []
   m_selectedTriangles: 
+--- !u!114 &114281127363646254
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1968110605174556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 112998890, guid: 325c5b2a7434372429c2ca9d61dba58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _guid: 50a594d1-607f-495d-8194-955f55c07d01
 --- !u!114 &114334538149059350
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2998,4 +3041,5 @@ MonoBehaviour:
   _referenceCollection:
     _collection:
     - {fileID: 1886930150745694}
+    - {fileID: 1968110605174556}
   _assetGuid: 5e727e81430f6af44b8f8fd6d86c8a16

@@ -41,11 +41,11 @@ Material:
     - _Illum:
         m_Texture: {fileID: 2800000, guid: 4561ef0b246ee42489a9c2dd8d4135fa, type: 3}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Offset: {x: -0.03, y: 0}
     - _MKGlowTex:
         m_Texture: {fileID: 2800000, guid: 4561ef0b246ee42489a9c2dd8d4135fa, type: 3}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Offset: {x: -0.03, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: d2bfdb919488ef040b6f7e30c6d08ebf, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -83,7 +83,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0, g: 0.04867482, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MKGlowColor: {r: 0, g: 0.052033424, b: 1, a: 1}
-    - _MKGlowTexColor: {r: 0.017205715, g: 0, b: 1, a: 1}
+    - _MKGlowColor: {r: 0, g: 0.007030964, b: 1, a: 1}
+    - _MKGlowTexColor: {r: 0.15566039, g: 0.22727811, b: 1, a: 1}
