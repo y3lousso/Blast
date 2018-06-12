@@ -19,15 +19,15 @@ namespace BeatDetector
         private int sampleFrequency = 44100; // Hz
 
 
-        public void Main(float[] signal)
+        public float[][] Main(float[] signal)
         {
             // Variables
             int n = signal.Length;
-            int time = n / sampleFrequency;
+            float time = n / sampleFrequency;
             int nbBars = (int) (time / barTime);
             int nbSamplesPerBar = n / nbBars;
-            float[] valuesT = new float[nbBars - 1];
-            for (int i = 0; i < nbBars - 1; i++)
+            float[] valuesT = new float[nbBars];
+            for (int i = 0; i < nbBars; i++)
             {
                 valuesT[i] = ((float) i * time) / ((float) (nbBars - 1));
             }
@@ -35,8 +35,8 @@ namespace BeatDetector
             // Gabor & audibles freq
             float stepF = sampleFrequency / (float) (nbSamplesPerBar);
             int nbValuesFS = (int) (fMax / stepF);
-            float[] valuesFS = new float[nbValuesFS];
-            for (int i = 0; i < nbValuesFS; i++)
+            float[] valuesFS = new float[nbValuesFS+1];
+            for (int i = 0; i < nbValuesFS+1; i++)
             {
                 valuesFS[i] = i * stepF;
             }
@@ -47,21 +47,21 @@ namespace BeatDetector
             FloatComplex[][] s = new FloatComplex[nbValuesFS][];
             for (int i = 0; i < s.Length; i++)
             {
-                s[i] = new FloatComplex[nbSamplesPerBar];
-                for (int j = 0; j < s.Length; j++)
+                s[i] = new FloatComplex[nbBars];
+                for (int j = 0; j < nbBars; j++)
                 {
                     s[i][j] = gabor[i][j];
                 }
             }
 
             // Partition
-            float iMinPart = (int) Math.Log(fMin);
-            float iMaxPart = (int) Math.Log(fMax);
+            float iMinPart = (float) Math.Log(fMin);
+            float iMaxPart = (float) Math.Log(fMax);
             float stepPart = (iMaxPart - iMinPart) / (float) nbBands;
-            float[] partition = new float[nbBands];
-            for (int i = 0; i < nbBars; i++)
+            float[] partition = new float[nbBands+1];
+            for (int i = 0; i < nbBands+1; i++)
             {
-                partition[i] = iMinPart + stepPart * ((float) i);
+                partition[i] = (float) Math.Exp(iMinPart + stepPart * ((float) i));
             }
 
             int[] indPartition = new int[nbBands + 1];
@@ -74,6 +74,7 @@ namespace BeatDetector
 
             // Compute sound signature
             float[][] signature = ES(s, indPartition, valuesT, valuesFS);
+            return signature;
 
         }
 
@@ -82,15 +83,23 @@ namespace BeatDetector
             float[][] signature = new float[2][];
             List<float> freqs = new List<float>();
             List<float> values = new List<float>();
+            int nbBars = s[0].Length;
 
-            for (int i = 0; i < nbBands; i++)
+            for (int i = 0; i < nbBands-1; i++)
             {
                 int iMin = indPartition[i];
                 int iMax = indPartition[i + 1];
 
                 // Band extraction :
                 FloatComplex[][] band = new FloatComplex[iMax-iMin][];
-                // TODO
+                for (int b1 = 0; b1 < iMax - iMin; b1++)
+                {
+                    band[b1] = new FloatComplex[nbBars];
+                    for (int b2 = 0; b2 < nbBars; b2++)
+                    {
+                        band[b1][b2] = s[b1 + iMin][b2];
+                    }
+                }
 
                 // Localisation of locales max
                 float[][] localesMax = getLocalesMaximum(band);
@@ -103,8 +112,8 @@ namespace BeatDetector
                 {
                     if (localesMax[1][j] > threshold)
                     {
-                        freqs.Add(localesMax[0][j]);
-                        values.Add(localesMax[1][j]);
+                        freqs.Add(valuesT[j]);
+                        values.Add(valuesFS[(int) (localesMax[0][j]+ iMin)]);
                     }
                 }
             }
@@ -162,11 +171,15 @@ namespace BeatDetector
             int nbBars = n / nbSamplesPerBar;
 
             FloatComplex[][] TG = new FloatComplex[nbSamplesPerBar][];
+            for (int i = 0; i < nbSamplesPerBar; i++)
+            {
+                TG[i] = new FloatComplex[nbBars];                
+            }
 
             for (int i = 0; i < nbBars; i++)
             {
                 int iMin = i * nbSamplesPerBar;
-                int iMax = (i + 1) * nbSamplesPerBar - 1; 
+                int iMax = (i + 1) * nbSamplesPerBar; 
                 
                 float[] sub = new float[iMax-iMin];
                 for (int j = 0; j < iMax-iMin; j++)
@@ -174,7 +187,11 @@ namespace BeatDetector
                     sub[j] = signal[j + iMin];
                 }
 
-                TG[i] = ComplexFFt(sub);
+                FloatComplex[] subFFT = ComplexFFt(sub);
+                for (int j = 0; j < nbSamplesPerBar; j++)
+                {
+                    TG[j][i] = subFFT[j];
+                }
             }
             return TG;
         }
@@ -187,7 +204,7 @@ namespace BeatDetector
         {
 
             int n = signal.Length;
-            var fftVector = new FloatComplexVector();
+            var fftVector = new FloatComplexVector(n);
             for (int i = 0; i < n; i++)
             {
                 fftVector[i] = new FloatComplex(signal[i], 0);                
@@ -209,15 +226,13 @@ namespace BeatDetector
             int n = data.Length;
             int i = 0;
             int indMin = 0;
-            float min = data[0];
             bool isFound = false;
 
             while (i < n && !isFound)
             {
-                if (data[i] < min)
+                if (data[i] > value)
                 {
                     indMin = i;
-                    min = data[i];
                     isFound = true;
                 }
 

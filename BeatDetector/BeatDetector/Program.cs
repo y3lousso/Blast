@@ -16,12 +16,15 @@ namespace BeatDetector
             SoundSignature soundSignature = new SoundSignature();
             DWTBeatDetector dwtBeatDetector = new DWTBeatDetector();
 
-            string path = "music/timeisrunningout.mp3";
+            string path = "music/007.mp3";
             float sampleRate = GetMp3SampleRate(path);
             float[] music = GetRawMp3Frames(path);
 
 
             /* sound signature */
+            float[][] signature = new SoundSignature().Main(music);
+
+            
              
             
 
@@ -60,7 +63,7 @@ namespace BeatDetector
             Application.SetCompatibleTextRenderingDefault(false);
             Form1 form = new Form1();
 
-            form.plotGraph(beat);
+            form.plotGraph(null);
             Application.Run(form);
             
             
