@@ -131,9 +131,11 @@ MonoBehaviour:
   cubeColor: 0
   explodeClip: {fileID: 8300000, guid: e127def09e266b14ab427ac01deda0dd, type: 3}
   missClip: {fileID: 8300000, guid: e858d47e8b4a50f4fb3a48a0f80cb7d8, type: 3}
+  explodeParticle: {fileID: 198218601438078162, guid: 6df001a816ea0554bbe4421e8785f86c,
+    type: 2}
 --- !u!114 &114365545153834558
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 11
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1357859710106012}
@@ -461,7 +463,7 @@ MonoBehaviour:
   m_selectedTriangles: 
 --- !u!114 &114521335623638188
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 11
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1357859710106012}

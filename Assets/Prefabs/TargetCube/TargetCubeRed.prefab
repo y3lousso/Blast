@@ -119,7 +119,7 @@ BoxCollider:
   m_Center: {x: 0.00000011920929, y: 0.000000014901161, z: -0.00000011920929}
 --- !u!114 &114346449816757284
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 11
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1617974770334136}
@@ -131,7 +131,7 @@ MonoBehaviour:
   _guid: 18501311-7e94-48ad-93ce-38cd63652426
 --- !u!114 &114547720296835128
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 11
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1617974770334136}
@@ -471,3 +471,5 @@ MonoBehaviour:
   cubeColor: 0
   explodeClip: {fileID: 8300000, guid: e127def09e266b14ab427ac01deda0dd, type: 3}
   missClip: {fileID: 8300000, guid: e858d47e8b4a50f4fb3a48a0f80cb7d8, type: 3}
+  explodeParticle: {fileID: 198218601438078162, guid: 05b3c64fc9281c94295fa51fc150bde4,
+    type: 2}

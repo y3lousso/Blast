@@ -23,7 +23,7 @@ public class AudioDataEditor : Editor {
 
     SerializedProperty list;
 
-    //private ReorderableList list;
+    private ReorderableList listPatterns;
 
     private void OnEnable()
     {
@@ -42,15 +42,13 @@ public class AudioDataEditor : Editor {
         list = serializedObject.FindProperty("targetCubesData");
 
 
-        /*list = new ReorderableList(serializedObject,
+        listPatterns = new ReorderableList(serializedObject,
                 serializedObject.FindProperty("targetCubesData"),
                 true, true, true, true);
 
-        forceListSize = list.count;
-
-        list.drawElementCallback =
+        listPatterns.drawElementCallback =
         (Rect rect, int index, bool isActive, bool isFocused) => {
-            var element = list.serializedProperty.GetArrayElementAtIndex(index);
+            var element = listPatterns.serializedProperty.GetArrayElementAtIndex(index);
             rect.y += 2;
             EditorGUI.PropertyField(
                 new Rect(rect.x, rect.y, 30, EditorGUIUtility.singleLineHeight),
@@ -69,13 +67,13 @@ public class AudioDataEditor : Editor {
                 element.FindPropertyRelative("cubeColor"), GUIContent.none);
         };
 
-        list.onAddCallback = (ReorderableList l) => {
+        listPatterns.onAddCallback = (ReorderableList l) => {
             var index = l.serializedProperty.arraySize;
             l.serializedProperty.arraySize++;
             l.index = index;
             var element = l.serializedProperty.GetArrayElementAtIndex(index);
-            element.FindPropertyRelative("Id").intValue = list.count;
-        };*/
+            element.FindPropertyRelative("Id").intValue = listPatterns.count;
+        };
     }
 
     public override void OnInspectorGUI()
@@ -93,14 +91,12 @@ public class AudioDataEditor : Editor {
         EditorGUILayout.Slider(isExtremChance, 0f, 1f);
         EditorGUILayout.Slider(isSameColorChance, 0f, 1f);
 
-        EditorGUILayout.PropertyField(list);
-
         if (GUILayout.Button("Randomize"))
         {
             ((AudioData)target).targetCubesData = Randomizer();
         }
 
-        //list.DoLayoutList();
+        listPatterns.DoLayoutList();
         serializedObject.ApplyModifiedProperties();
     }
 
@@ -153,6 +149,8 @@ public class AudioDataEditor : Editor {
                     TargetCubeData current2 = new TargetCubeData();
                     current2.Id = i;
 
+                    Random.InitState(i);
+
                     if (isExtrem)
                     {
                         current2.horizontalPosition = (HorizontalPosition)RandomEnum(new int[] { (int)HorizontalPosition.ExtLeft, (int)HorizontalPosition.ExtRight });
@@ -161,7 +159,7 @@ public class AudioDataEditor : Editor {
                     {
                         current2.horizontalPosition = (HorizontalPosition)RandomEnum(new int[] { (int)HorizontalPosition.Left, (int)HorizontalPosition.Right });
                     }
-                    if (isTop)
+                    if (!isTop)
                     {
                         current2.vecticalPosition = VecticalPosition.Top;
                     }
@@ -172,13 +170,28 @@ public class AudioDataEditor : Editor {
 
                     current2.orientation = (Orientation)RandomEnum(new int[] { 0, 1, 2, 3 });
 
-                    current2.cubeColor = (CubeColor)( ((int)cubeColor + 1) % 2 );
+                    if (cubeColor == CubeColor.Blue)
+                    {
+                        current2.cubeColor = CubeColor.Red;
+                    }
+                    else
+                    {
+                        current2.cubeColor = CubeColor.Blue;
+                    }
+
                     targetCubesData.Add(current2);
                 }
 
                 if (!isSameColor)
                 {
-                    cubeColor = (CubeColor)RandomEnum(new int[] { (int)CubeColor.Blue, (int)CubeColor.Red });
+                    if(cubeColor == CubeColor.Blue)
+                    {
+                        cubeColor = CubeColor.Red;
+                    }
+                    else
+                    {
+                        cubeColor = CubeColor.Blue;
+                    }              
                 }          
             }
         }

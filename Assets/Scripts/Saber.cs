@@ -19,6 +19,7 @@ public class Saber : MonoBehaviour {
     public void Update()
     {
         saberEdgeVelocity = saberEdge.position - saberEdgeLastFramePosition;
+        saberEdgeVelocity.z = 0f;
         saberEdgeLastFramePosition = saberEdge.position;
     }
 
