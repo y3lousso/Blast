@@ -10,15 +10,15 @@ namespace BeatDetector
         
         private int nbBands = 4;
         private float sampleRate = 44100; // Hz
-        private float minBpm = 60;
-        private float maxBpm = 220;
+        private float minBpm = 40;
+        private float maxBpm = 180;
 
 
         public int Beat(float[] signal)
         {
 
             float bpm = -1;
-            float mean = 0;
+            float mean;
             int dcSumLenght = 0;
             float[] tempSignal = signal;
             float[] dcSum = new float[1];
@@ -55,7 +55,6 @@ namespace BeatDetector
                 if (i == 0)
                 {
                     dcSum = details;
-
                 }
                 else
                 {
@@ -81,7 +80,7 @@ namespace BeatDetector
 
             for (int j = 0; j < Math.Min(dcSumLenght, tempSignal.Length); j++)
             {
-                dcSum[j] = dcSum[j] + tempSignal[j];
+                dcSum[j] += tempSignal[j];
             }
             
 
@@ -148,8 +147,9 @@ namespace BeatDetector
             
             var data = new FloatVector(signal);
             var wavelet = new FloatWavelet(Wavelet.Wavelets.D4);
-            var dwt = new FloatDWT(wavelet);
+            var dwt = new FloatDWT(signal, wavelet);
 
+            dwt.Decompose(nbBands);
             dwt.DWT(data.DataBlock.Data, out approxOutput, out detailsOutput);
         }
 
@@ -169,16 +169,16 @@ namespace BeatDetector
         {
             int n = data.Length;
             float mean = data.Sum() / data.Length;
-            float[] autocorrelate = new float[n];
-            for (int k = 0; k < n; k++)
+            float[] autocorrelate = new float[n/2];
+            for (int k = 0; k < n/2; k++)
             {
                 float s = 0;
                 for (int j = 0; j < n; j++)
                 {
-                    if (k + j < n)
-                    {
-                        s += data[j] * data[k + j];
-                    }
+                    //if (k + j < n)
+                    //{
+                        s += data[j] * data[(k + j) % n];
+                    //}
                 }
 
                 autocorrelate[k] = s;

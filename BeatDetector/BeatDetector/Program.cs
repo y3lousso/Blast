@@ -16,23 +16,30 @@ namespace BeatDetector
             SoundSignature soundSignature = new SoundSignature();
             DWTBeatDetector dwtBeatDetector = new DWTBeatDetector();
 
-            string path = "music/pluginbaby.mp3";
+            string path = "music/timeisrunningout.mp3";
             float sampleRate = GetMp3SampleRate(path);
             float[] music = GetRawMp3Frames(path);
 
 
-            int nbFrames = (int) (music.Length/2/sampleRate);
+            /* sound signature */
+             
+            
+
+            /* Beat detector
+            int windowTime = 4;
+            int nbFrames = (int)(music.Length / windowTime / sampleRate)
             float[] beat = new float[nbFrames];
             for (int i = 0; i < nbFrames-1; i++)
             {
-                float[] music2 = new float[(int)(2 * sampleRate)];
+                float[] music2 = new float[(int)(windowTime * sampleRate)];
                 for (int j = 0; j < music2.Length; j++)
                 {
-                    music2[j] = music[(int) (j + i*2*sampleRate)];
+                    music2[j] = music[(int) (j + i * windowTime * sampleRate)];
                 }
                 beat[i] = dwtBeatDetector.Beat(music2);
                 Console.WriteLine(beat[i]);
             }
+            */
 
 
             /* BPMTFF
