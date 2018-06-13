@@ -1,5 +1,6 @@
 ﻿using NAudio.Wave;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace BeatDetector
@@ -16,17 +17,13 @@ namespace BeatDetector
             SoundSignature soundSignature = new SoundSignature();
             DWTBeatDetector dwtBeatDetector = new DWTBeatDetector();
 
-            string path = "music/007.mp3";
+            string path = "music/escape.mp3";
             float sampleRate = GetMp3SampleRate(path);
             float[] music = GetRawMp3Frames(path);
 
 
             /* sound signature */
-            float[][] signature = new SoundSignature().Main(music);
-
-            
-             
-            
+            List<List<bool>> signature = SoundSignatureGenerator.GetSignature(path, 175);            
 
             /* Beat detector
             int windowTime = 4;
@@ -63,7 +60,7 @@ namespace BeatDetector
             Application.SetCompatibleTextRenderingDefault(false);
             Form1 form = new Form1();
 
-            form.plotGraph(null);
+            //form.plotGraph2(signature);
             Application.Run(form);
             
             

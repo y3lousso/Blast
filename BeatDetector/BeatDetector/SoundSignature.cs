@@ -13,8 +13,9 @@ namespace BeatDetector
         private float fMax = 2000f; // Hz
         
         private int nbBands = 6;
-        
-        private float barTime = 0.2f; //seconds
+
+        private float bpm = 125;
+
 
         private int sampleFrequency = 44100; // Hz
 
@@ -24,6 +25,7 @@ namespace BeatDetector
             // Variables
             int n = signal.Length;
             float time = n / sampleFrequency;
+            float barTime = 60f / bpm;
             int nbBars = (int) (time / barTime);
             int nbSamplesPerBar = n / nbBars;
             float[] valuesT = new float[nbBars];
@@ -85,10 +87,10 @@ namespace BeatDetector
             List<float> values = new List<float>();
             int nbBars = s[0].Length;
 
-            for (int i = 0; i < nbBands-1; i++)
+            for (int i = 0; i < nbBands; i++)
             {
                 int iMin = indPartition[i];
-                int iMax = indPartition[i + 1];
+                int iMax = Math.Min(indPartition[i + 1], s.Length);
 
                 // Band extraction :
                 FloatComplex[][] band = new FloatComplex[iMax-iMin][];
@@ -113,14 +115,17 @@ namespace BeatDetector
                     if (localesMax[1][j] > threshold)
                     {
                         freqs.Add(valuesT[j]);
-                        values.Add(valuesFS[(int) (localesMax[0][j]+ iMin)]);
+                        //freqs.Add(i);
+                        values.Add(i);
+                        //values.Add(valuesFS[(int) (localesMax[0][j]+ iMin)]);
                     }
                 }
             }
-
+            
             signature[0] = freqs.ToArray();
             signature[1] = values.ToArray();
             return signature;
+           
         }
 
         /**
@@ -171,51 +176,32 @@ namespace BeatDetector
             int nbBars = n / nbSamplesPerBar;
 
             FloatComplex[][] TG = new FloatComplex[nbSamplesPerBar][];
+            var fftFoward = new FloatComplexForward1DFFT(nbSamplesPerBar);
+
             for (int i = 0; i < nbSamplesPerBar; i++)
             {
-                TG[i] = new FloatComplex[nbBars];                
+                TG[i] = new FloatComplex[nbBars];
             }
 
             for (int i = 0; i < nbBars; i++)
             {
                 int iMin = i * nbSamplesPerBar;
-                int iMax = (i + 1) * nbSamplesPerBar; 
-                
-                float[] sub = new float[iMax-iMin];
-                for (int j = 0; j < iMax-iMin; j++)
+                int iMax = (i + 1) * nbSamplesPerBar;
+
+                FloatComplex[] sub = new FloatComplex[nbSamplesPerBar];
+                for (int j = 0; j < iMax - iMin; j++)
                 {
-                    sub[j] = signal[j + iMin];
+                    sub[j] = new FloatComplex(signal[j + iMin], 0);
                 }
 
-                FloatComplex[] subFFT = ComplexFFt(sub);
+                fftFoward.FFTInPlace(sub);
                 for (int j = 0; j < nbSamplesPerBar; j++)
                 {
-                    TG[j][i] = subFFT[j];
+                    TG[j][i] = sub[j];
                 }
             }
+
             return TG;
-        }
-        
-        
-        /**
-         * FFT inplace
-         */
-        public FloatComplex[] ComplexFFt(float[] signal)
-        {
-
-            int n = signal.Length;
-            var fftVector = new FloatComplexVector(n);
-            for (int i = 0; i < n; i++)
-            {
-                fftVector[i] = new FloatComplex(signal[i], 0);                
-            }
-
-            // Apply fft
-            var fftFoward = new FloatComplexForward1DFFT(signal.Length);
-            
-            fftFoward.FFTInPlace(fftVector);
-
-            return fftVector.ToArray();
         }
 
         /**

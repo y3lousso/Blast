@@ -48,6 +48,37 @@ namespace BeatDetector
             SetSize();
         }
 
+        public void plotGraph2(float[][] signal)
+        {
+            GraphPane myPane = zedGraphControl1.GraphPane;
+
+            // Set the Titles
+            myPane.Title.Text = "Music";
+            myPane.XAxis.Title.Text = "time";
+            myPane.YAxis.Title.Text = "I";
+            myPane.YAxis.Scale.Min = signal[1].Min();
+            myPane.YAxis.Scale.Max = signal[1].Max();
+
+            myPane.XAxis.Scale.Min = signal[0].Min();
+            myPane.XAxis.Scale.Max = signal[0].Max();
+
+            PointPairList list = new PointPairList();
+
+            for (int i = 0; i < signal[0].Length; i++)
+            {
+                list.Add(signal[0][i], signal[1][i]);
+            }
+
+            LineItem teamBCurve = myPane.AddCurve("Signal", list, Color.Blue, SymbolType.Circle);
+            teamBCurve.Line.IsVisible = false;
+            teamBCurve.Symbol.Border.IsVisible = false;
+            teamBCurve.Symbol.Fill = new Fill(Color.Blue);
+
+            zedGraphControl1.AxisChange();
+
+            SetSize();
+        }
+
         private void SetSize()
         {
             zedGraphControl1.Location = new Point(0, 0);
