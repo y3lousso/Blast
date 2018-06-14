@@ -17,13 +17,15 @@ namespace BeatDetector
             SoundSignature soundSignature = new SoundSignature();
             DWTBeatDetector dwtBeatDetector = new DWTBeatDetector();
 
-            string path = "music/escape.mp3";
+            string path = "C:/Mockup/8INF955_Projet/BeatDetector/BeatDetector/music/escape.mp3";
             float sampleRate = GetMp3SampleRate(path);
             float[] music = GetRawMp3Frames(path);
 
 
             /* sound signature */
-            List<List<bool>> signature = SoundSignatureGenerator.GetSignature(path, 175);            
+            List<List<bool>> signature = SoundSignatureGenerator.GetSignature(path, 175);
+            SoundSignatureFileManager.SaveSoundSignature("C:/Mockup/8INF955_Projet/BeatDetector/BeatDetector/data/escape.txt", signature);
+
 
             /* Beat detector
             int windowTime = 4;
@@ -55,7 +57,7 @@ namespace BeatDetector
 
             */
 
-            
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Form1 form = new Form1();
