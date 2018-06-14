@@ -14,13 +14,15 @@ public class AudioDataEditor : Editor {
     SerializedProperty randomSeed;
     SerializedProperty startingOffset;
 
-    [Range(0,1)]
+    SerializedProperty signatureFilePath;
+
     SerializedProperty isNotEmptyChance;
     SerializedProperty isDoubleChance;
     SerializedProperty isTopChance;
     SerializedProperty isExtremChance;
-    SerializedProperty isSameColorChance;
+    SerializedProperty isSameColorChance;   
 
+    SerializedProperty showList;
     SerializedProperty list;
 
     private ReorderableList listPatterns;
@@ -39,6 +41,8 @@ public class AudioDataEditor : Editor {
         isExtremChance = serializedObject.FindProperty("isExtremChance");
         isSameColorChance = serializedObject.FindProperty("isSameColorChance");
 
+        showList = serializedObject.FindProperty("showList");
+        signatureFilePath = serializedObject.FindProperty("signatureFilePath");
         list = serializedObject.FindProperty("targetCubesData");
 
 
@@ -79,12 +83,21 @@ public class AudioDataEditor : Editor {
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
+
         EditorGUILayout.PropertyField(audioClip);
         EditorGUILayout.PropertyField(beatPerMinute);
         EditorGUILayout.PropertyField(nbFrames);
         EditorGUILayout.PropertyField(randomSeed);
         EditorGUILayout.PropertyField(startingOffset);
 
+        EditorGUILayout.PropertyField(signatureFilePath);
+
+        if (GUILayout.Button("Generate from signature (filepath)"))
+        {
+            ((AudioData)target).targetCubesData = GenerateFromSignature();
+        }
+
+        EditorGUILayout.LabelField("From Randomizer", EditorStyles.boldLabel);
         EditorGUILayout.Slider(isNotEmptyChance, 0f, 1f);
         EditorGUILayout.Slider(isDoubleChance, 0f, 1f);
         EditorGUILayout.Slider(isTopChance, 0f, 1f);
@@ -96,7 +109,13 @@ public class AudioDataEditor : Editor {
             ((AudioData)target).targetCubesData = Randomizer();
         }
 
-        listPatterns.DoLayoutList();
+        EditorGUILayout.PropertyField(showList);
+
+        if (showList.boolValue)
+        {
+            listPatterns.DoLayoutList();
+        }
+
         serializedObject.ApplyModifiedProperties();
     }
 
@@ -195,6 +214,17 @@ public class AudioDataEditor : Editor {
                 }          
             }
         }
+
+        return targetCubesData;
+    }
+
+    private List<TargetCubeData> GenerateFromSignature()
+    {
+        List<TargetCubeData> targetCubesData = new List<TargetCubeData>();
+        targetCubesData.Add(new TargetCubeData());
+
+        //List<List<bool>> bools = BeatDetector.SoundSignatureGenerator.GetSignature(Application.dataPath + "/Sounds/escape.mp3", (float)beatPerMinute.intValue);
+        //Debug.Log(bools.Count);
 
         return targetCubesData;
     }

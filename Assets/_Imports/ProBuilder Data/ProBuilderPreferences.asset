@@ -13,24 +13,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Bool_keys:
   - pbUVMaterialPreview
+  - pbStripProBuilderOnBuild
+  - pbDisableAutoUV2Generation
+  - pbForceConvex
+  - pbMeshesAreAssets
   m_Int_keys:
   - pbHandleAlignment
   - pbDefaultEditLevel
   - pbDefaultSelectionMode
   - pb_GIWorkflowMode
+  - pbDefaultCollider
+  - pbShadowCastingMode
+  - pbDefaultStaticFlags
   m_Float_keys:
   - pbEditorScroll.x
   - pbEditorScroll.y
   m_String_keys:
   - pbCurrentMaterialPalette
   m_Color_keys: []
-  m_Material_keys: []
-  m_Bool_values: 01
-  m_Int_values: 02000000000000000200000000000000
+  m_Material_keys:
+  - pbDefaultMaterial
+  m_Bool_values: 0101000000
+  m_Int_values: 02000000000000000200000000000000020000000200000000000000
   m_Float_values:
   - 0
-  - 57
+  - 0
   m_String_values:
   - Assets/_Imports/ProBuilder Data/Default Material Palette.asset
   m_Color_values: []
-  m_Material_values: []
+  m_Material_values:
+  - {fileID: 2100000, guid: f8af10ae2c674e569782e57b09c76a13, type: 2}
