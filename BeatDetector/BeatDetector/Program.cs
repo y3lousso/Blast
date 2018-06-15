@@ -1,6 +1,8 @@
 ﻿using NAudio.Wave;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace BeatDetector
@@ -17,13 +19,21 @@ namespace BeatDetector
             SoundSignature soundSignature = new SoundSignature();
             DWTBeatDetector dwtBeatDetector = new DWTBeatDetector();
 
-            string path = "music/escape.mp3";
+            string path = "music/psycho.mp3";
+
             float sampleRate = GetMp3SampleRate(path);
-            float[] music = GetRawMp3Frames(path);
+            float[] music = music2(path);
+
+
+
 
 
             /* sound signature */
-            List<List<bool>> signature = SoundSignatureGenerator.GetSignature(path, 175);            
+            SoundSignatureFileManager.SaveSoundSignature("music/psycho.txt", SoundSignatureGenerator.GetSignature(path, 125));
+            //List<List<bool>> signature = SoundSignatureGenerator.GetSignature(path, 175);   
+            //SoundSignatureFileManager.SaveSoundSignature("music/text.txt", signature);
+            //List<List<bool>> signature2 = SoundSignatureFileManager.LoadSoundSignature("music/text.txt");
+            //Console.WriteLine(signature2 == signature);
 
             /* Beat detector
             int windowTime = 4;
@@ -55,7 +65,7 @@ namespace BeatDetector
 
             */
 
-            
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Form1 form = new Form1();
@@ -79,30 +89,56 @@ namespace BeatDetector
         }
 
 
-        public static float[] GetRawMp3Frames(string filename)
+        private static float[] GetRawMp3Frames(string filename)
         {
+
             float[] floatBuffer;
             using (MediaFoundationReader media = new MediaFoundationReader(filename))
             {
-
-                int byteBuffer32Length = (int) media.Length;
-                int floatBufferLength = byteBuffer32Length / sizeof(float);
+                int _byteBuffer32_length = (int)media.Length * 2;
+                int _floatBuffer_length = _byteBuffer32_length / sizeof(float);
 
                 IWaveProvider stream32 = new Wave16ToFloatProvider(media);
-                WaveBuffer waveBuffer = new WaveBuffer(byteBuffer32Length);
-                stream32.Read(waveBuffer, 0, byteBuffer32Length);
-                floatBuffer = new float[floatBufferLength];
+                WaveBuffer _waveBuffer = new WaveBuffer(_byteBuffer32_length);
+                stream32.Read(_waveBuffer, 0, (int)_byteBuffer32_length);
+                floatBuffer = new float[_floatBuffer_length/2];
 
-                for (int i = 0; i < floatBufferLength; i++)
+                for (int i = 0; i < _floatBuffer_length/2; i++)
                 {
-                    floatBuffer[i] = waveBuffer.FloatBuffer[i];
+                    floatBuffer[i] = (_waveBuffer.FloatBuffer[i]);
                 }
+
+                //float max = floatBuffer.Max();
+                //for (int i = 0; i < floatBuffer.Length; i++)
+                //    floatBuffer[i] = floatBuffer[i] / max;
             }
+
             return floatBuffer;
         }
 
+        private static float[] music2(string filename)
+        {
+            float[] floatBuffer;
+            using (MemoryStream output = new MemoryStream())
+            {
+                Mp3FileReader reader = new Mp3FileReader(filename);
+                Mp3Frame frame;
+                while ((frame = reader.ReadNextFrame()) != null)
+                {
+                    output.Write(frame.RawData, 0, frame.RawData.Length);
+                }
 
+                byte[] outputList = output.ToArray();
+                floatBuffer = new float[output.Length];
 
+                for (int i = 0; i < output.Length; i++)
+                {
+                    floatBuffer[i] = outputList[i];
+                }
+            }
+
+            return floatBuffer;
+        }
     }
 }
 

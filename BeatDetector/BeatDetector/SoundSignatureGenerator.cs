@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using CenterSpace.NMath.Core;
 using NAudio.Wave;
@@ -212,20 +213,21 @@ namespace BeatDetector
         private static float[] GetRawMp3Frames(string filename)
         {
             float[] floatBuffer;
-            using (MediaFoundationReader media = new MediaFoundationReader(filename))
+            using (MemoryStream output = new MemoryStream())
             {
-
-                int byteBuffer32Length = (int) media.Length;
-                int floatBufferLength = byteBuffer32Length / sizeof(float);
-
-                IWaveProvider stream32 = new Wave16ToFloatProvider(media);
-                WaveBuffer waveBuffer = new WaveBuffer(byteBuffer32Length);
-                stream32.Read(waveBuffer, 0, byteBuffer32Length);
-                floatBuffer = new float[floatBufferLength];
-
-                for (int i = 0; i < floatBufferLength; i++)
+                Mp3FileReader reader = new Mp3FileReader(filename);
+                Mp3Frame frame;
+                while ((frame = reader.ReadNextFrame()) != null)
                 {
-                    floatBuffer[i] = waveBuffer.FloatBuffer[i];
+                    output.Write(frame.RawData, 0, frame.RawData.Length);
+                }
+
+                byte[] outputList = output.ToArray();
+                floatBuffer = new float[output.Length];
+
+                for (int i = 0; i < output.Length; i++)
+                {
+                    floatBuffer[i] = outputList[i];
                 }
             }
 

@@ -12,7 +12,7 @@ namespace BeatDetector
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
-            this.TopMost = true;
+            //this.TopMost = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)

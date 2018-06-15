@@ -14,7 +14,7 @@ namespace BeatDetector
         
         private int nbBands = 6;
 
-        private float bpm = 125;
+        private float bpm = 121;
 
 
         private int sampleFrequency = 44100; // Hz
@@ -26,6 +26,7 @@ namespace BeatDetector
             int n = signal.Length;
             float time = n / sampleFrequency;
             float barTime = 60f / bpm;
+            //float barTime = 0.2f;
             int nbBars = (int) (time / barTime);
             int nbSamplesPerBar = n / nbBars;
             float[] valuesT = new float[nbBars];
@@ -115,7 +116,6 @@ namespace BeatDetector
                     if (localesMax[1][j] > threshold)
                     {
                         freqs.Add(valuesT[j]);
-                        //freqs.Add(i);
                         values.Add(i);
                         //values.Add(valuesFS[(int) (localesMax[0][j]+ iMin)]);
                     }
