@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour {
     void Start () {
         audioSource = GetComponent<AudioSource>();
         StartCoroutine("StartMusic");
-        InvokeRepeating("StartSpawningCubes", audioData.startingOffset, 60f / audioData.beatPerMinute);
+        InvokeRepeating("StartSpawningCubes", 0f, 60f / audioData.beatPerMinute);
     }
 
     private IEnumerator StartMusic()

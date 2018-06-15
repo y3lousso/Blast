@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
+using System.IO;
+using System.Linq;
 
 [CustomEditor(typeof(AudioData))]
 [CanEditMultipleObjects]
@@ -94,7 +96,7 @@ public class AudioDataEditor : Editor {
 
         if (GUILayout.Button("Generate from signature (filepath)"))
         {
-            ((AudioData)target).targetCubesData = GenerateFromSignature();
+            ((AudioData)target).targetCubesData = GenerateFromFile(signatureFilePath.stringValue);
         }
 
         EditorGUILayout.LabelField("From Randomizer", EditorStyles.boldLabel);
@@ -151,11 +153,11 @@ public class AudioDataEditor : Editor {
                 }
                 if (isTop)
                 {
-                    current.vecticalPosition = VecticalPosition.Top;
+                    current.vecticalPosition = VerticalPosition.Top;
                 }
                 else
                 {
-                    current.vecticalPosition = VecticalPosition.Bot;
+                    current.vecticalPosition = VerticalPosition.Bot;
                 }
 
                 current.orientation = (Orientation)RandomEnum(new int[] { 0, 1, 2, 3 } );
@@ -180,11 +182,11 @@ public class AudioDataEditor : Editor {
                     }
                     if (!isTop)
                     {
-                        current2.vecticalPosition = VecticalPosition.Top;
+                        current2.vecticalPosition = VerticalPosition.Top;
                     }
                     else
                     {
-                        current2.vecticalPosition = VecticalPosition.Bot;
+                        current2.vecticalPosition = VerticalPosition.Bot;
                     }
 
                     current2.orientation = (Orientation)RandomEnum(new int[] { 0, 1, 2, 3 });
@@ -218,13 +220,34 @@ public class AudioDataEditor : Editor {
         return targetCubesData;
     }
 
-    private List<TargetCubeData> GenerateFromSignature()
+    /// <summary>
+    /// File need to be Assets folder
+    /// </summary>
+    /// <param name="filePath"></param>
+    /// <returns></returns>
+    private List<TargetCubeData> GenerateFromFile(string filePath)
     {
         List<TargetCubeData> targetCubesData = new List<TargetCubeData>();
-        targetCubesData.Add(new TargetCubeData());
+        
+        List<List<bool>> lines = ExtractBoolArrayFromFile(Application.dataPath +"/"+ filePath);
 
-        //List<List<bool>> bools = BeatDetector.SoundSignatureGenerator.GetSignature(Application.dataPath + "/Sounds/escape.mp3", (float)beatPerMinute.intValue);
-        //Debug.Log(bools.Count);
+        int i = 0;     
+        foreach (List<bool> line in lines)
+        {
+            foreach (bool b in line)
+            {
+                if (b == true)
+                {
+                    TargetCubeData cube = new TargetCubeData { Id = i, cubeColor = CubeColor.Blue, horizontalPosition = HorizontalPosition.Right, vecticalPosition = VerticalPosition.Bot, orientation = Orientation.Top };
+                    if (i % 2 == 0)
+                    {
+                        cube.orientation = Orientation.Bot;
+                    }
+                    targetCubesData.Add(cube);
+                }
+            }
+            i++;
+        }
 
         return targetCubesData;
     }
@@ -245,5 +268,22 @@ public class AudioDataEditor : Editor {
     private int RandomEnum(int[] enums)
     {
         return enums[Random.Range(0, enums.Length)];
+    }
+
+    private List<List<bool>> ExtractBoolArrayFromFile(string filePath)
+    {
+        List<List<bool>> signature = new List<List<bool>>();
+        if (!File.Exists(filePath))
+        {
+            throw new IOException("The file " + filePath + " doesn't exist !");
+        }
+
+        string[] file = File.ReadAllLines(filePath);
+        foreach (string s in file)
+        {
+            signature.Add(s.Split(',').Select(bool.Parse).ToList());
+        }
+
+        return signature;
     }
 }

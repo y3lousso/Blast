@@ -23,12 +23,10 @@ namespace BeatDetector
                     tw.WriteLine(string.Join(",", signature[i]));
                 }
             }
-
         }
 
         public static List<List<bool>> LoadSoundSignature(string filepath)
         {
-
             List<List<bool>> signature = new List<List<bool>>();
             if (!File.Exists(filepath))
             {
