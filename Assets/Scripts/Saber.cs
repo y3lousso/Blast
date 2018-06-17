@@ -34,7 +34,7 @@ public class Saber : MonoBehaviour {
 
             if (hasEnoughVelocity && hasCorrectAngle && saberColor == targetCube.cubeColor)
             {
-                targetCube.Explode();
+                targetCube.DestroyObject();
                 VRControllerManager.instance.PlayHaptic(transform.parent.gameObject, 7, .1f, .01f);
             }
             else

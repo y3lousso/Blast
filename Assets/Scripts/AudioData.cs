@@ -23,6 +23,8 @@ public class AudioData : ScriptableObject
     [SerializeField] public float isSameColorChance = 0.5f;
 
     [Header("Data")]
-    [SerializeField] public bool showList = false;
-    [SerializeField] public List<TargetCubeData> targetCubesData = new List<TargetCubeData>();
+    [SerializeField] public bool showListCubes = false;
+    [SerializeField] public List<TargetCubeData> listCubes = new List<TargetCubeData>();
+    [SerializeField] public bool showListWalls = false;
+    [SerializeField] public List<WallData> listWalls = new List<WallData>();
 }

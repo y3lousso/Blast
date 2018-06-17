@@ -24,10 +24,13 @@ public class AudioDataEditor : Editor {
     SerializedProperty isExtremChance;
     SerializedProperty isSameColorChance;   
 
-    SerializedProperty showList;
-    SerializedProperty list;
+    SerializedProperty showListCubes;
+    SerializedProperty listCubes;
+    private ReorderableList listCubesReordorable;
 
-    private ReorderableList listPatterns;
+    SerializedProperty showListWalls;
+    SerializedProperty listWalls;
+    private ReorderableList listWallsReordorable;
 
     private void OnEnable()
     {
@@ -43,18 +46,26 @@ public class AudioDataEditor : Editor {
         isExtremChance = serializedObject.FindProperty("isExtremChance");
         isSameColorChance = serializedObject.FindProperty("isSameColorChance");
 
-        showList = serializedObject.FindProperty("showList");
         signatureFilePath = serializedObject.FindProperty("signatureFilePath");
-        list = serializedObject.FindProperty("targetCubesData");
 
+        showListCubes = serializedObject.FindProperty("showListCubes");        
+        listCubes = serializedObject.FindProperty("listCubes");
+        InitListCubes();
 
-        listPatterns = new ReorderableList(serializedObject,
-                serializedObject.FindProperty("targetCubesData"),
+        showListWalls = serializedObject.FindProperty("showListWalls");
+        listWalls = serializedObject.FindProperty("listWalls");
+        InitListWalls();
+    }
+
+    private void InitListCubes()
+    {
+        listCubesReordorable = new ReorderableList(serializedObject,
+                serializedObject.FindProperty("listCubes"),
                 true, true, true, true);
 
-        listPatterns.drawElementCallback =
+        listCubesReordorable.drawElementCallback =
         (Rect rect, int index, bool isActive, bool isFocused) => {
-            var element = listPatterns.serializedProperty.GetArrayElementAtIndex(index);
+            var element = listCubesReordorable.serializedProperty.GetArrayElementAtIndex(index);
             rect.y += 2;
             EditorGUI.PropertyField(
                 new Rect(rect.x, rect.y, 30, EditorGUIUtility.singleLineHeight),
@@ -73,12 +84,34 @@ public class AudioDataEditor : Editor {
                 element.FindPropertyRelative("cubeColor"), GUIContent.none);
         };
 
-        listPatterns.onAddCallback = (ReorderableList l) => {
+        listCubesReordorable.onAddCallback = (ReorderableList l) => {
             var index = l.serializedProperty.arraySize;
             l.serializedProperty.arraySize++;
             l.index = index;
             var element = l.serializedProperty.GetArrayElementAtIndex(index);
-            element.FindPropertyRelative("Id").intValue = listPatterns.count;
+            element.FindPropertyRelative("Id").intValue = listCubesReordorable.count;
+        };
+    }
+
+    private void InitListWalls()
+    {
+        listWallsReordorable = new ReorderableList(serializedObject,
+                serializedObject.FindProperty("listWalls"),
+                true, true, true, true);
+
+        listWallsReordorable.drawElementCallback =
+        (Rect rect, int index, bool isActive, bool isFocused) => {
+            var element = listWallsReordorable.serializedProperty.GetArrayElementAtIndex(index);
+            rect.y += 2;
+            EditorGUI.PropertyField(
+                new Rect(rect.x, rect.y, 30, EditorGUIUtility.singleLineHeight),
+                element.FindPropertyRelative("Id"), GUIContent.none);
+            EditorGUI.PropertyField(
+                new Rect(rect.x + 35, rect.y, 60, EditorGUIUtility.singleLineHeight),
+                element.FindPropertyRelative("position"), GUIContent.none);
+            EditorGUI.PropertyField(
+                new Rect(rect.x + 100, rect.y, 60, EditorGUIUtility.singleLineHeight),
+                element.FindPropertyRelative("length"), GUIContent.none);
         };
     }
 
@@ -88,18 +121,18 @@ public class AudioDataEditor : Editor {
 
         EditorGUILayout.PropertyField(audioClip);
         EditorGUILayout.PropertyField(beatPerMinute);
-        EditorGUILayout.PropertyField(nbFrames);
-        EditorGUILayout.PropertyField(randomSeed);
-        EditorGUILayout.PropertyField(startingOffset);
+        EditorGUILayout.PropertyField(nbFrames);       
 
         EditorGUILayout.PropertyField(signatureFilePath);
 
         if (GUILayout.Button("Generate from signature (filepath)"))
         {
-            ((AudioData)target).targetCubesData = GenerateFromFile(signatureFilePath.stringValue);
+            ((AudioData)target).listCubes = GenerateFromFile(signatureFilePath.stringValue);
         }
 
         EditorGUILayout.LabelField("From Randomizer", EditorStyles.boldLabel);
+        EditorGUILayout.PropertyField(randomSeed);
+        EditorGUILayout.PropertyField(startingOffset);
         EditorGUILayout.Slider(isNotEmptyChance, 0f, 1f);
         EditorGUILayout.Slider(isDoubleChance, 0f, 1f);
         EditorGUILayout.Slider(isTopChance, 0f, 1f);
@@ -108,14 +141,21 @@ public class AudioDataEditor : Editor {
 
         if (GUILayout.Button("Randomize"))
         {
-            ((AudioData)target).targetCubesData = Randomizer();
+            ((AudioData)target).listCubes = Randomizer();
         }
 
-        EditorGUILayout.PropertyField(showList);
+        EditorGUILayout.PropertyField(showListCubes);
 
-        if (showList.boolValue)
+        if (showListCubes.boolValue)
         {
-            listPatterns.DoLayoutList();
+            listCubesReordorable.DoLayoutList();
+        }
+
+        EditorGUILayout.PropertyField(showListWalls);
+
+        if (showListWalls.boolValue)
+        {
+            listWallsReordorable.DoLayoutList();
         }
 
         serializedObject.ApplyModifiedProperties();

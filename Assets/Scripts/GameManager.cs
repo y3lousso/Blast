@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
 
     private AudioSource audioSource;
     public AudioData audioData;
-    public TargetCubeSpawner targetCubeSpawner;
+    public TargetCubeSpawner spawner;
 
     [Range(1, 10)]
     public float targetCubeSpeed = 5f;
@@ -21,11 +21,14 @@ public class GameManager : MonoBehaviour {
     public float currentTimeIndicator = 0;
     public int currentIndex = 0;
 
+    public Results results = new Results();
+
     public void Awake()
     {
         if(Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
@@ -33,11 +36,27 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    // Use this for initialization
-    void Start () {
+    private void OnEnable()
+    {
         audioSource = GetComponent<AudioSource>();
+    }
+
+    // Use this for initialization
+    public void Play ()
+    {
+        results = new Results();
+        spawner = FindObjectOfType<TargetCubeSpawner>();
         StartCoroutine("StartMusic");
-        InvokeRepeating("StartSpawningCubes", 0f, 60f / audioData.beatPerMinute);
+        InvokeRepeating("StartSpawning", 0f, 60f / audioData.beatPerMinute);
+        Invoke("Finish", audioData.audioClip.length + 1f);
+    }
+
+    public void Finish()
+    {
+        CancelInvoke("StartSpawning");
+
+        results.Date = System.DateTime.Today.ToString();
+        SceneDataManager.Instance.GoToMenuScene();
     }
 
     private IEnumerator StartMusic()
@@ -47,9 +66,10 @@ public class GameManager : MonoBehaviour {
         audioSource.Play();
     }
 
-    private void StartSpawningCubes()
+    private void StartSpawning()
     {
-        targetCubeSpawner.SpawnTargetCubes(audioData.targetCubesData.FindAll(t => t.Id == currentIndex));
+        spawner.SpawnTargetCubes(audioData.listCubes.FindAll(t => t.Id == currentIndex));
+        spawner.SpawnWall(audioData.listWalls.Find(w => w.Id == currentIndex));
         currentIndex++;
         currentTimeIndicator = audioSource.time;
     }
