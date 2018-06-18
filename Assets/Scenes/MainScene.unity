@@ -820,7 +820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad408acfdfea56408b3e5740c30d8f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioData: {fileID: 11400000, guid: d993cf60e11170642a7a407285063506, type: 2}
+  audioData: {fileID: 11400000, guid: 8ddf9129b7adb944f92eaf2b0e221baa, type: 2}
   targetCubeSpawner: {fileID: 477843346}
   targetCubeSpeed: 7
   slashAngleThreshold: 0.7
