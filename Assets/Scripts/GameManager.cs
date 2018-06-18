@@ -47,9 +47,18 @@ public class GameManager : MonoBehaviour {
     {
         results = new Results();
         spawner = FindObjectOfType<TargetCubeSpawner>();
-        StartCoroutine("StartMusic");
-        InvokeRepeating("StartSpawning", 0f, 60f / audioData.beatPerMinute);
-        Invoke("Finish", audioData.audioClip.length + 1f);
+        if(audioData.startingOffset < 0f)
+        {
+            Invoke("StartMusic", 0f);
+            InvokeRepeating("StartSpawning", -audioData.startingOffset, 60f / audioData.beatPerMinute);
+            Invoke("Finish", audioData.audioClip.length );
+        }
+        else
+        {
+            Invoke("StartMusic", audioData.startingOffset);
+            InvokeRepeating("StartSpawning", 0f, 60f / audioData.beatPerMinute);
+            Invoke("Finish", audioData.audioClip.length + audioData.startingOffset);
+        }
     }
 
     public void Finish()
@@ -61,9 +70,8 @@ public class GameManager : MonoBehaviour {
         SceneDataManager.Instance.GoToMenuScene();
     }
 
-    private IEnumerator StartMusic()
+    private void StartMusic()
     {
-        yield return new WaitForSeconds(audioData.startingOffset);
         audioSource.clip = audioData.audioClip;
         audioSource.Play();
     }

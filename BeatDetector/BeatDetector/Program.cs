@@ -18,22 +18,19 @@ namespace BeatDetector
             SoundSignature soundSignature = new SoundSignature();
             DWTBeatDetector dwtBeatDetector = new DWTBeatDetector();
 
-            string path = "music/escape.mp3";
+            string path = "C:/Mockup/8INF955_Projet/BeatDetector/BeatDetector/music/insane.mp3";
+            string output = "C:/Mockup/8INF955_Projet/BeatDetector/BeatDetector/signatures/insane.txt";
 
             float sampleRate = GetMp3SampleRate(path);
             float[] music = GetRawMp3Frames(path);
-
-
-
-
 
             /* sound signature */
             //List<bool> signature = SoundSignatureGenerator2.GetSignature(path, 175, 0.5f);
 
 
             int a =1;
-            List<List<bool>> signature = SoundSignatureGenerator2.GetSignature(path, 175, 0.5f);   
-            SoundSignatureFileManager.SaveSoundSignature("music/escape.txt", signature);
+            List<List<bool>> signature = SoundSignatureGenerator.GetSignature(path, 160);   
+            SoundSignatureFileManager.SaveSoundSignature(output, signature);
             //SoundSignatureFileManager.SaveSoundSignature("music/text.txt", signature);
             //List<List<bool>> signature2 = SoundSignatureFileManager.LoadSoundSignature("music/text.txt");
             //Console.WriteLine(signature2 == signature);
