@@ -327,10 +327,10 @@ public class AudioDataEditor : Editor {
 
             if ( pattern != null)
             {
-                for (int i = 0; i < pattern.targetCubeDatas.Count; i++)
+                foreach(TargetCubeData t2 in pattern.targetCubeDatas)
                 {
-                    TargetCubeData targetCube = new TargetCubeData(pattern.targetCubeDatas[i]);
-                    targetCube.Id = i+ t.Item1;                    
+                    TargetCubeData targetCube = new TargetCubeData(t2);
+                    targetCube.Id = t2.Id + t.Item1;                    
                     targetCubeDatas.Add(targetCube);
                 }  
             }

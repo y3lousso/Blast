@@ -15,20 +15,66 @@ MonoBehaviour:
   listPatterns:
   - length: 1
     targetCubeDatas:
-    - Id: 467
+    - Id: 0
       horizontalPosition: -3
       vecticalPosition: 1
       orientation: 3
       cubeColor: 2
   - length: 2
     targetCubeDatas:
-    - Id: 452
+    - Id: 0
       horizontalPosition: -3
       vecticalPosition: 0
       orientation: 3
       cubeColor: 2
-    - Id: 453
+    - Id: 1
       horizontalPosition: 3
       vecticalPosition: 1
       orientation: 1
+      cubeColor: 1
+  - length: 1
+    targetCubeDatas:
+    - Id: 0
+      horizontalPosition: -1
+      vecticalPosition: 0
+      orientation: 0
+      cubeColor: 2
+    - Id: 0
+      horizontalPosition: 1
+      vecticalPosition: 0
+      orientation: 2
+      cubeColor: 1
+  - length: 2
+    targetCubeDatas:
+    - Id: 0
+      horizontalPosition: 1
+      vecticalPosition: 0
+      orientation: 1
+      cubeColor: 2
+    - Id: 0
+      horizontalPosition: 1
+      vecticalPosition: 1
+      orientation: 1
+      cubeColor: 1
+    - Id: 1
+      horizontalPosition: -1
+      vecticalPosition: 0
+      orientation: 3
+      cubeColor: 1
+    - Id: 1
+      horizontalPosition: -1
+      vecticalPosition: 1
+      orientation: 3
+      cubeColor: 2
+  - length: 1
+    targetCubeDatas:
+    - Id: 0
+      horizontalPosition: -3
+      vecticalPosition: 0
+      orientation: 0
+      cubeColor: 2
+    - Id: 0
+      horizontalPosition: 3
+      vecticalPosition: 0
+      orientation: 0
       cubeColor: 1
