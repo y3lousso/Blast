@@ -2346,7 +2346,7 @@ MonoBehaviour:
         m_MethodName: Music_OnMusicSelected
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 8ddf9129b7adb944f92eaf2b0e221baa,
+          m_ObjectArgument: {fileID: 11400000, guid: 4a84707369e5da445852ff035af18bb6,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: AudioData, Assembly-CSharp
           m_IntArgument: 0
