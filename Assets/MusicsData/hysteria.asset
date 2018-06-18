@@ -13,15 +13,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 79c8beb236705454cae3559df5c01b65, type: 3}
   beatPerMinute: 93
+  startingOffset: 1.4
   nbFrames: 500
   randomSeed: 0
-  startingOffset: 1.4
-  signatureFilePath: MusicsData/hysteria.txt
   isNotEmptyChance: 0.5
   isDoubleChance: 0.5
   isTopChance: 0.5
   isExtremChance: 0.5
   isSameColorChance: 0.5
+  signatureFilePath: MusicsData/hysteria.txt
+  patternManager: {fileID: 11400000, guid: 4ce588df0101bbb40a67b382aa16187e, type: 2}
   showListCubes: 0
   listCubes:
   - Id: 0
