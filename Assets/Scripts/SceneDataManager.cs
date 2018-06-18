@@ -16,7 +16,7 @@ public class SceneDataManager : MonoBehaviour
         }
         else
         {
-            throw new System.Exception("Can't instantiate multiple Scene Data Manager.");
+            Destroy(gameObject);
         }
     }
 

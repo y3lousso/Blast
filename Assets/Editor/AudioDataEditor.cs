@@ -13,7 +13,8 @@ public class AudioDataEditor : Editor {
     
     SerializedProperty audioClip;
     SerializedProperty beatPerMinute;
-    SerializedProperty startingOffset;    
+    SerializedProperty startingOffset;
+    SerializedProperty difficulty;
 
     // Random
     SerializedProperty nbFrames;
@@ -44,10 +45,11 @@ public class AudioDataEditor : Editor {
     {
         audioClip = serializedObject.FindProperty("audioClip");
         beatPerMinute = serializedObject.FindProperty("beatPerMinute");
-        nbFrames = serializedObject.FindProperty("nbFrames");
-        randomSeed = serializedObject.FindProperty("randomSeed");
         startingOffset = serializedObject.FindProperty("startingOffset");
+        difficulty = serializedObject.FindProperty("difficulty");
 
+        nbFrames = serializedObject.FindProperty("nbFrames");
+        randomSeed = serializedObject.FindProperty("randomSeed");       
         isNotEmptyChance = serializedObject.FindProperty("isNotEmptyChance");
         isDoubleChance = serializedObject.FindProperty("isDoubleChance");
         isTopChance = serializedObject.FindProperty("isTopChance");
@@ -132,8 +134,9 @@ public class AudioDataEditor : Editor {
         EditorGUILayout.PropertyField(audioClip);
         EditorGUILayout.PropertyField(beatPerMinute);
         EditorGUILayout.PropertyField(startingOffset);
-                    
-        
+        EditorGUILayout.PropertyField(difficulty);
+
+
         EditorGUILayout.PropertyField(nbFrames);
         EditorGUILayout.PropertyField(randomSeed);
         EditorGUILayout.Slider(isNotEmptyChance, 0f, 1f);

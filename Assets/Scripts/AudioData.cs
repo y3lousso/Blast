@@ -9,6 +9,7 @@ public class AudioData : ScriptableObject
     [SerializeField] public AudioClip audioClip;
     [SerializeField] public int beatPerMinute = 90;
     [SerializeField] public float startingOffset = 0f;
+    [SerializeField] public Difficulty difficulty = Difficulty.Normal;
 
     [Header("From Randomizer")]
     [SerializeField] public int nbFrames;

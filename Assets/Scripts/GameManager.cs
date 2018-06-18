@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour {
     public int currentIndex = 0;
 
     public Results results = new Results();
+    public float multiplier = 1f;
 
     public void Awake()
     {
@@ -32,7 +33,7 @@ public class GameManager : MonoBehaviour {
         }
         else
         {
-            throw new System.Exception("Can't have multiple game manager.");
+            Destroy(gameObject);
         }
     }
 
@@ -56,6 +57,7 @@ public class GameManager : MonoBehaviour {
         CancelInvoke("StartSpawning");
 
         results.Date = System.DateTime.Today.ToString();
+        results.Difficulty = audioData.difficulty;
         SceneDataManager.Instance.GoToMenuScene();
     }
 

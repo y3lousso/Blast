@@ -12,6 +12,8 @@ public class MenuUI : MonoBehaviour {
 
     [Header("Results Panel")]
     public Text scoreText;
+    public Text hitText;
+    public Text difficultyText;
 
     // Use this for initialization
     void Start () {
@@ -66,7 +68,9 @@ public class MenuUI : MonoBehaviour {
 
     private void ShowResults(Results results)
     {
-        scoreText.text = results.CorrectHit + " / " + results.MaxHit;
+        scoreText.text = results.Score.ToString();
+        hitText.text = results.CorrectHit + " / " + results.MaxHit;
+        difficultyText.text = results.Difficulty.ToString();
         resultsPanel.SetActive(true);
     }
 }

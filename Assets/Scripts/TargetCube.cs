@@ -11,18 +11,34 @@ public class TargetCube : SpawnableObject
 
     [SerializeField] ParticleSystem explodeParticle;
 
-    public override void DestroyObject()
+    public void CorrectHit()
     {
         AudioSource.PlayClipAtPoint(explodeClip, transform.position);
         ParticleSystem p = Instantiate(explodeParticle,transform.position, transform.rotation);
         GameManager.Instance.results.CorrectHit++;
+
+        if(GameManager.Instance.multiplier < 10f)
+        {
+            GameManager.Instance.multiplier += .5f;
+        }
+
+        GameManager.Instance.results.Score += (int)(123f * GameManager.Instance.multiplier);
+
+        Debug.Log(GameManager.Instance.results.Score);
+
         Destroy(p.gameObject, 1f);
         Destroy(gameObject);
     }
 
-    public void Miss()
+    public override void DestroyObject()
     {
         AudioSource.PlayClipAtPoint(missClip, transform.position);
+        GameManager.Instance.multiplier -= 1f;
+        if (GameManager.Instance.multiplier < 1f)
+        {
+            GameManager.Instance.multiplier = 1f;
+        }
+        
         Destroy(gameObject);
     }
 }

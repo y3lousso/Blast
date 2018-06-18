@@ -14,7 +14,7 @@ namespace BeatDetector
         
         private int nbBands = 6;
 
-        private float bpm = 121;
+        private float bpm = 160;
 
 
         private int sampleFrequency = 44100; // Hz
