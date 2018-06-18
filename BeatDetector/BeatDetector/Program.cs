@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace BeatDetector
@@ -19,18 +18,22 @@ namespace BeatDetector
             SoundSignature soundSignature = new SoundSignature();
             DWTBeatDetector dwtBeatDetector = new DWTBeatDetector();
 
-            string path = "music/psycho.mp3";
+            string path = "music/escape.mp3";
 
             float sampleRate = GetMp3SampleRate(path);
-            float[] music = music2(path);
+            float[] music = GetRawMp3Frames(path);
 
 
 
 
 
             /* sound signature */
-            SoundSignatureFileManager.SaveSoundSignature("music/psycho.txt", SoundSignatureGenerator.GetSignature(path, 125));
-            //List<List<bool>> signature = SoundSignatureGenerator.GetSignature(path, 175);   
+            //List<bool> signature = SoundSignatureGenerator2.GetSignature(path, 175, 0.5f);
+
+
+            int a =1;
+            List<List<bool>> signature = SoundSignatureGenerator2.GetSignature(path, 175, 0.5f);   
+            SoundSignatureFileManager.SaveSoundSignature("music/escape.txt", signature);
             //SoundSignatureFileManager.SaveSoundSignature("music/text.txt", signature);
             //List<List<bool>> signature2 = SoundSignatureFileManager.LoadSoundSignature("music/text.txt");
             //Console.WriteLine(signature2 == signature);
@@ -70,7 +73,7 @@ namespace BeatDetector
             Application.SetCompatibleTextRenderingDefault(false);
             Form1 form = new Form1();
 
-            //form.plotGraph2(signature);
+            //form.plotGraph(signature);
             Application.Run(form);
             
             
@@ -105,12 +108,8 @@ namespace BeatDetector
 
                 for (int i = 0; i < _floatBuffer_length/2; i++)
                 {
-                    floatBuffer[i] = (_waveBuffer.FloatBuffer[i]);
+                    floatBuffer[i] = _waveBuffer.FloatBuffer[i];
                 }
-
-                //float max = floatBuffer.Max();
-                //for (int i = 0; i < floatBuffer.Length; i++)
-                //    floatBuffer[i] = floatBuffer[i] / max;
             }
 
             return floatBuffer;
