@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TargetCube_CorrectSide
   - TargetCube_WrongSide
+  - UI
   layers:
   - Default
   - TransparentFX

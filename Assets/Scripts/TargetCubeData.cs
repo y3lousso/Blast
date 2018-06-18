@@ -10,6 +10,20 @@ public class TargetCubeData
     [SerializeField] public VerticalPosition vecticalPosition = VerticalPosition.Bot;
     [SerializeField] public Orientation orientation = Orientation.Left;
     [SerializeField] public CubeColor cubeColor = CubeColor.Blue;
+
+    public TargetCubeData()
+    {
+
+    }
+
+    public TargetCubeData(TargetCubeData t)
+    {
+        this.Id = t.Id;
+        this.horizontalPosition = t.horizontalPosition;
+        this.vecticalPosition = t.vecticalPosition;
+        this.orientation = t.orientation;
+        this.cubeColor = t.cubeColor;
+    }
 }
 
 public enum HorizontalPosition

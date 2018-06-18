@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEditorInternal;
 using System.IO;
 using System.Linq;
+using System;
 
 [CustomEditor(typeof(AudioData))]
 [CanEditMultipleObjects]
@@ -12,22 +13,32 @@ public class AudioDataEditor : Editor {
     
     SerializedProperty audioClip;
     SerializedProperty beatPerMinute;
+    SerializedProperty startingOffset;    
+
+    // Random
     SerializedProperty nbFrames;
-    SerializedProperty randomSeed;
-    SerializedProperty startingOffset;
-
-    SerializedProperty signatureFilePath;
-
+    SerializedProperty randomSeed;   
     SerializedProperty isNotEmptyChance;
     SerializedProperty isDoubleChance;
     SerializedProperty isTopChance;
     SerializedProperty isExtremChance;
-    SerializedProperty isSameColorChance;   
+    SerializedProperty isSameColorChance;
 
-    SerializedProperty showList;
-    SerializedProperty list;
+    // With signature
+    SerializedProperty signatureFilePath;
 
-    private ReorderableList listPatterns;
+    //With signature and patterns
+    SerializedProperty patternManager;
+
+    SerializedProperty showListCubes;
+    SerializedProperty listCubes;
+    private ReorderableList listCubesReordorable;
+
+    SerializedProperty showListWalls;
+    SerializedProperty listWalls;
+    private ReorderableList listWallsReordorable;
+
+    #region Inspector
 
     private void OnEnable()
     {
@@ -43,18 +54,28 @@ public class AudioDataEditor : Editor {
         isExtremChance = serializedObject.FindProperty("isExtremChance");
         isSameColorChance = serializedObject.FindProperty("isSameColorChance");
 
-        showList = serializedObject.FindProperty("showList");
         signatureFilePath = serializedObject.FindProperty("signatureFilePath");
-        list = serializedObject.FindProperty("targetCubesData");
 
+        patternManager = serializedObject.FindProperty("patternManager");
 
-        listPatterns = new ReorderableList(serializedObject,
-                serializedObject.FindProperty("targetCubesData"),
+        showListCubes = serializedObject.FindProperty("showListCubes");        
+        listCubes = serializedObject.FindProperty("listCubes");
+        InitListCubes();
+
+        showListWalls = serializedObject.FindProperty("showListWalls");
+        listWalls = serializedObject.FindProperty("listWalls");
+        InitListWalls();
+    }
+
+    private void InitListCubes()
+    {
+        listCubesReordorable = new ReorderableList(serializedObject,
+                serializedObject.FindProperty("listCubes"),
                 true, true, true, true);
 
-        listPatterns.drawElementCallback =
+        listCubesReordorable.drawElementCallback =
         (Rect rect, int index, bool isActive, bool isFocused) => {
-            var element = listPatterns.serializedProperty.GetArrayElementAtIndex(index);
+            var element = listCubesReordorable.serializedProperty.GetArrayElementAtIndex(index);
             rect.y += 2;
             EditorGUI.PropertyField(
                 new Rect(rect.x, rect.y, 30, EditorGUIUtility.singleLineHeight),
@@ -73,12 +94,34 @@ public class AudioDataEditor : Editor {
                 element.FindPropertyRelative("cubeColor"), GUIContent.none);
         };
 
-        listPatterns.onAddCallback = (ReorderableList l) => {
+        listCubesReordorable.onAddCallback = (ReorderableList l) => {
             var index = l.serializedProperty.arraySize;
             l.serializedProperty.arraySize++;
             l.index = index;
             var element = l.serializedProperty.GetArrayElementAtIndex(index);
-            element.FindPropertyRelative("Id").intValue = listPatterns.count;
+            element.FindPropertyRelative("Id").intValue = listCubesReordorable.count;
+        };
+    }
+
+    private void InitListWalls()
+    {
+        listWallsReordorable = new ReorderableList(serializedObject,
+                serializedObject.FindProperty("listWalls"),
+                true, true, true, true);
+
+        listWallsReordorable.drawElementCallback =
+        (Rect rect, int index, bool isActive, bool isFocused) => {
+            var element = listWallsReordorable.serializedProperty.GetArrayElementAtIndex(index);
+            rect.y += 2;
+            EditorGUI.PropertyField(
+                new Rect(rect.x, rect.y, 30, EditorGUIUtility.singleLineHeight),
+                element.FindPropertyRelative("Id"), GUIContent.none);
+            EditorGUI.PropertyField(
+                new Rect(rect.x + 35, rect.y, 60, EditorGUIUtility.singleLineHeight),
+                element.FindPropertyRelative("position"), GUIContent.none);
+            EditorGUI.PropertyField(
+                new Rect(rect.x + 100, rect.y, 60, EditorGUIUtility.singleLineHeight),
+                element.FindPropertyRelative("length"), GUIContent.none);
         };
     }
 
@@ -88,18 +131,11 @@ public class AudioDataEditor : Editor {
 
         EditorGUILayout.PropertyField(audioClip);
         EditorGUILayout.PropertyField(beatPerMinute);
+        EditorGUILayout.PropertyField(startingOffset);
+                    
+        
         EditorGUILayout.PropertyField(nbFrames);
         EditorGUILayout.PropertyField(randomSeed);
-        EditorGUILayout.PropertyField(startingOffset);
-
-        EditorGUILayout.PropertyField(signatureFilePath);
-
-        if (GUILayout.Button("Generate from signature (filepath)"))
-        {
-            ((AudioData)target).targetCubesData = GenerateFromFile(signatureFilePath.stringValue);
-        }
-
-        EditorGUILayout.LabelField("From Randomizer", EditorStyles.boldLabel);
         EditorGUILayout.Slider(isNotEmptyChance, 0f, 1f);
         EditorGUILayout.Slider(isDoubleChance, 0f, 1f);
         EditorGUILayout.Slider(isTopChance, 0f, 1f);
@@ -108,22 +144,47 @@ public class AudioDataEditor : Editor {
 
         if (GUILayout.Button("Randomize"))
         {
-            ((AudioData)target).targetCubesData = Randomizer();
+            ((AudioData)target).listCubes = Randomizer();
         }
 
-        EditorGUILayout.PropertyField(showList);
+        EditorGUILayout.PropertyField(signatureFilePath);
 
-        if (showList.boolValue)
+        if (GUILayout.Button("Generate from signature (filepath)"))
         {
-            listPatterns.DoLayoutList();
+            ((AudioData)target).listCubes = GenerateFromFile(signatureFilePath.stringValue);
+        }
+
+        EditorGUILayout.PropertyField(patternManager);
+
+        if (GUILayout.Button("Generate from signature and patterns"))
+        {
+            ((AudioData)target).listCubes = GenerateFromFileAndPatterns(signatureFilePath.stringValue);
+        }
+
+        EditorGUILayout.PropertyField(showListCubes);
+
+        if (showListCubes.boolValue)
+        {
+            listCubesReordorable.DoLayoutList();
+        }
+
+        EditorGUILayout.PropertyField(showListWalls);
+
+        if (showListWalls.boolValue)
+        {
+            listWallsReordorable.DoLayoutList();
         }
 
         serializedObject.ApplyModifiedProperties();
     }
 
+    #endregion
+
+    #region ListBuildingLogic
+
     private List<TargetCubeData> Randomizer()
     {
-        Random.InitState(randomSeed.intValue);
+        UnityEngine.Random.InitState(randomSeed.intValue);
 
         List<TargetCubeData> targetCubesData = new List<TargetCubeData>();
 
@@ -170,7 +231,7 @@ public class AudioDataEditor : Editor {
                     TargetCubeData current2 = new TargetCubeData();
                     current2.Id = i;
 
-                    Random.InitState(i);
+                    UnityEngine.Random.InitState(i);
 
                     if (isExtrem)
                     {
@@ -227,47 +288,121 @@ public class AudioDataEditor : Editor {
     /// <returns></returns>
     private List<TargetCubeData> GenerateFromFile(string filePath)
     {
-        List<TargetCubeData> targetCubesData = new List<TargetCubeData>();
-        
+        // From 2D array of bool to Tuple<Index,Size>
         List<List<bool>> lines = ExtractBoolArrayFromFile(Application.dataPath +"/"+ filePath);
+        List<bool> bools = Convert2dBoolArrayTo1d(lines);
+        List<Tuple<int, int>> tuples = GenerateTupleFromBool(bools);
 
-        int i = 0;     
-        foreach (List<bool> line in lines)
+        // Generate random targetCubeData for each tuple
+        List<TargetCubeData> targetCubeDatas = new List<TargetCubeData>();
+
+        foreach(Tuple<int,int> t in tuples)
         {
-            foreach (bool b in line)
+            targetCubeDatas.AddRange(GenerateDefaultPattern(t));
+        }
+
+        return targetCubeDatas;
+    }
+
+    private List<TargetCubeData> GenerateFromFileAndPatterns(string filePath)
+    {
+        // From 2D array of bool to Tuple<Index,Size>
+        List<List<bool>> lines = ExtractBoolArrayFromFile(Application.dataPath + "/" + filePath);
+        List<bool> bools = Convert2dBoolArrayTo1d(lines);
+        List<Tuple<int, int>> tuples = GenerateTupleFromBool(bools);
+
+        // Generate random targetCubeData for each tuple
+        List<TargetCubeData> targetCubeDatas = new List<TargetCubeData>();
+       
+        foreach (Tuple<int, int> t in tuples)
+        {
+            //Debug.Log(t);
+            List<Pattern> patterns = ((AudioData)target).patternManager.listPatterns.FindAll(p => p.length == t.Item2);
+            Pattern pattern = null;
+
+            if (patterns.Count > 0)
             {
-                if (b == true)
+                pattern = patterns[UnityEngine.Random.Range(0, patterns.Count)];
+            }
+
+            if ( pattern != null)
+            {
+                foreach(TargetCubeData t2 in pattern.targetCubeDatas)
                 {
-                    TargetCubeData cube = new TargetCubeData { Id = i, cubeColor = CubeColor.Blue, horizontalPosition = HorizontalPosition.Right, vecticalPosition = VerticalPosition.Bot, orientation = Orientation.Top };
-                    if (i % 2 == 0)
-                    {
-                        cube.orientation = Orientation.Bot;
-                    }
-                    targetCubesData.Add(cube);
+                    TargetCubeData targetCube = new TargetCubeData(t2);
+                    targetCube.Id = t2.Id + t.Item1;                    
+                    targetCubeDatas.Add(targetCube);
+                }  
+            }
+            else
+            {
+                targetCubeDatas.AddRange(GenerateDefaultPattern(t));
+            }            
+        }
+
+        return targetCubeDatas;
+    }   
+
+    // Example 
+    // Index : 1  5  10
+    // Size  : 3  1  2
+    private List<Tuple<int, int>> GenerateTupleFromBool(List<bool> bools)
+    {
+        List<Tuple<int, int>> listTuples = new List<Tuple<int, int>>();
+
+        int currentIndex = -1;
+        int currentSize = 0;
+
+        for (int i = 0; i < bools.Count; i++)
+        {
+            if (bools[i])
+            {
+                if(currentIndex == -1)
+                {
+                    currentIndex = i;
+                }
+                currentSize++;
+                if(i == bools.Count - 1)
+                {
+                    listTuples.Add(new Tuple<int, int>(currentIndex, currentSize));
                 }
             }
-            i++;
+            else
+            {
+                if (currentIndex != -1)
+                {
+                    listTuples.Add(new Tuple<int, int>(currentIndex, currentSize));
+                    currentIndex = -1;
+                    currentSize = 0;
+                }
+            }
         }
 
-        return targetCubesData;
+        return listTuples;
     }
 
-    private bool RandomBool(float chance)
+    private List<TargetCubeData> GenerateDefaultPattern(Tuple<int,int> tuple)
     {
-        float random = Random.Range(0f, 1f);
-        if (random <= chance)
+        List<TargetCubeData> targetCubeDatas = new List<TargetCubeData>();
+        for (int i = 0; i < tuple.Item2; i++)
         {
-            return true;
+            TargetCubeData cube = new TargetCubeData { Id = tuple.Item1 + i, cubeColor = CubeColor.Blue, horizontalPosition = HorizontalPosition.Right, vecticalPosition = VerticalPosition.Bot, orientation = Orientation.Top };
+            if ((tuple.Item1 + i) % 2 == 0)
+            {
+                cube.orientation = Orientation.Bot;
+            }
+            targetCubeDatas.Add(cube);                
         }
-        else
-        {
-            return false;
-        }
+        return targetCubeDatas;
     }
+
+    #endregion
+
+    #region Utils
 
     private int RandomEnum(int[] enums)
     {
-        return enums[Random.Range(0, enums.Length)];
+        return enums[UnityEngine.Random.Range(0, enums.Length)];
     }
 
     private List<List<bool>> ExtractBoolArrayFromFile(string filePath)
@@ -286,4 +421,37 @@ public class AudioDataEditor : Editor {
 
         return signature;
     }
+
+    private bool RandomBool(float chance)
+    {
+        float random = UnityEngine.Random.Range(0f, 1f);
+        if (random <= chance)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private List<bool> Convert2dBoolArrayTo1d(List<List<bool>> lines)
+    {
+        List<bool> outputs = new List<bool>();
+
+        foreach (List<bool> line in lines)
+        {
+            if (line.Any(b => b.Equals(true)))
+            {
+                outputs.Add(true);
+            }
+            else
+            {
+                outputs.Add(false);
+            }
+        }
+        return outputs;
+    }
+
+    #endregion
 }
