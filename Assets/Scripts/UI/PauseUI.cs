@@ -36,6 +36,7 @@ public class PauseUI : MonoBehaviour {
 
     private void Unpause()
     {
+        GameManager.Instance.Unpause();
         canvas.SetActive(false);
         uiPointer.enabled = false;
         pointer.enabled = false;
