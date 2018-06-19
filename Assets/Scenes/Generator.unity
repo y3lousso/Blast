@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d42612eda31aec44294784606d988903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bpm: 175
+  bpm: 160
   outputPath: Assets/MusicsData/file.txt
   image: {fileID: 125318880}
 --- !u!4 &293351342
