@@ -168,7 +168,7 @@ MonoBehaviour:
     cubeColor: 2
   - Id: 39
     horizontalPosition: 1
-    vecticalPosition: 1
+    vecticalPosition: 0
     orientation: 0
     cubeColor: 2
   - Id: 39
@@ -178,7 +178,7 @@ MonoBehaviour:
     cubeColor: 1
   - Id: 40
     horizontalPosition: 3
-    vecticalPosition: 1
+    vecticalPosition: 0
     orientation: 0
     cubeColor: 1
   - Id: 41
@@ -188,7 +188,7 @@ MonoBehaviour:
     cubeColor: 2
   - Id: 42
     horizontalPosition: 3
-    vecticalPosition: 1
+    vecticalPosition: 0
     orientation: 0
     cubeColor: 1
   - Id: 43
@@ -473,7 +473,7 @@ MonoBehaviour:
     cubeColor: 2
   - Id: 100
     horizontalPosition: -1
-    vecticalPosition: 1
+    vecticalPosition: 0
     orientation: 2
     cubeColor: 2
   - Id: 101
@@ -545,7 +545,7 @@ MonoBehaviour:
     horizontalPosition: 3
     vecticalPosition: 0
     orientation: 0
-    cubeColor: 2
+    cubeColor: 1
   - Id: 113
     horizontalPosition: 1
     vecticalPosition: 0
@@ -555,12 +555,12 @@ MonoBehaviour:
     horizontalPosition: 3
     vecticalPosition: 0
     orientation: 0
-    cubeColor: 2
+    cubeColor: 1
   - Id: 115
     horizontalPosition: -3
-    vecticalPosition: 0
-    orientation: 0
-    cubeColor: 1
+    vecticalPosition: 1
+    orientation: 3
+    cubeColor: 2
   - Id: 116
     horizontalPosition: -1
     vecticalPosition: 0
@@ -570,7 +570,7 @@ MonoBehaviour:
     horizontalPosition: -3
     vecticalPosition: 0
     orientation: 0
-    cubeColor: 1
+    cubeColor: 2
   - Id: 118
     horizontalPosition: -1
     vecticalPosition: 0
@@ -608,7 +608,7 @@ MonoBehaviour:
     cubeColor: 1
   - Id: 124
     horizontalPosition: -3
-    vecticalPosition: 1
+    vecticalPosition: 0
     orientation: 0
     cubeColor: 2
   - Id: 124
@@ -618,7 +618,7 @@ MonoBehaviour:
     cubeColor: 1
   - Id: 125
     horizontalPosition: 1
-    vecticalPosition: 1
+    vecticalPosition: 0
     orientation: 0
     cubeColor: 2
   - Id: 125
@@ -633,7 +633,7 @@ MonoBehaviour:
     cubeColor: 2
   - Id: 126
     horizontalPosition: 1
-    vecticalPosition: 1
+    vecticalPosition: 0
     orientation: 0
     cubeColor: 1
   - Id: 127
@@ -643,7 +643,7 @@ MonoBehaviour:
     cubeColor: 2
   - Id: 127
     horizontalPosition: 3
-    vecticalPosition: 1
+    vecticalPosition: 0
     orientation: 0
     cubeColor: 1
   - Id: 128
