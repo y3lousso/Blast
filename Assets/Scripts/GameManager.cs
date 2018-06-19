@@ -47,6 +47,19 @@ public class GameManager : MonoBehaviour {
     {
         results = new Results();
         spawner = FindObjectOfType<TargetCubeSpawner>();
+
+        // Create offset
+        float offset = spawner.transform.position.z / targetCubeSpeed - 0.4f;
+        Invoke("StartMusic", offset);
+        InvokeRepeating("StartSpawning", 0f, 60f / audioData.beatPerMinute);
+        Invoke("Finish", audioData.audioClip.length + audioData.startingOffset);
+
+                // Start AtmosphereManager to change color
+        AtmosphereManager.Instance.StartToggleColor(audioData.beatPerMinute, offset);
+
+
+
+        /** Old method 
         if(audioData.startingOffset < 0f)
         {
             Invoke("StartMusic", 0f);
@@ -55,10 +68,11 @@ public class GameManager : MonoBehaviour {
         }
         else
         {
-            Invoke("StartMusic", audioData.startingOffset);
+            Invoke("StartMusic", offset);
             InvokeRepeating("StartSpawning", 0f, 60f / audioData.beatPerMinute);
             Invoke("Finish", audioData.audioClip.length + audioData.startingOffset);
         }
+        */
     }
 
     public void Finish()

@@ -10,6 +10,8 @@ public class AtmosphereManager : MonoBehaviour {
     public Material redMaterial;
     public Material blueMaterial;
 
+    private bool isBlue = true;
+
     public void Awake()
     {
         if (Instance == null)
@@ -26,16 +28,15 @@ public class AtmosphereManager : MonoBehaviour {
     void Start () {
         materialSwappers = new List<MaterialSwapper>();
         materialSwappers.AddRange(FindObjectsOfType<MaterialSwapper>());
-        StartCoroutine("ToggleColorTest");
     }
 
-    public IEnumerator ToggleColorTest()
-    {
-        int i = 0;
-        while (true)
-        {
-            yield return new WaitForSeconds(5f);
-            if(i%2 == 0)
+    public void StartToggleColor(float bpm, float offset) {
+        float timeBetweenChange = 16*60/bpm; // equals to 16 notes
+        InvokeRepeating("ToggleColor", offset, timeBetweenChange);
+    }
+
+    public void ToggleColor() {
+            if(!isBlue)
             {
                 SetAmbiance(CubeColor.Blue);
             }
@@ -43,8 +44,7 @@ public class AtmosphereManager : MonoBehaviour {
             {
                 SetAmbiance(CubeColor.Red);
             }
-            i++;
-        }
+            isBlue = !isBlue;
     }
 	
 	public void SetAmbiance(CubeColor color)
