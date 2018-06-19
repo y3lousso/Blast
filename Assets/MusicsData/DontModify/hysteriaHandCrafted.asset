@@ -293,7 +293,7 @@ MonoBehaviour:
     cubeColor: 2
   - Id: 59
     horizontalPosition: 3
-    vecticalPosition: 1
+    vecticalPosition: 0
     orientation: 2
     cubeColor: 1
   - Id: 59
@@ -307,9 +307,9 @@ MonoBehaviour:
     orientation: 0
     cubeColor: 2
   - Id: 61
-    horizontalPosition: -1
+    horizontalPosition: 1
     vecticalPosition: 1
-    orientation: 3
+    orientation: 0
     cubeColor: 1
   - Id: 62
     horizontalPosition: -1
@@ -339,7 +339,7 @@ MonoBehaviour:
   - Id: 65
     horizontalPosition: 1
     vecticalPosition: 0
-    orientation: 3
+    orientation: 0
     cubeColor: 1
   - Id: 67
     horizontalPosition: -3
@@ -464,7 +464,7 @@ MonoBehaviour:
   - Id: 98
     horizontalPosition: 1
     vecticalPosition: 0
-    orientation: 1
+    orientation: 0
     cubeColor: 1
   - Id: 99
     horizontalPosition: -3
@@ -479,12 +479,12 @@ MonoBehaviour:
   - Id: 101
     horizontalPosition: 1
     vecticalPosition: 1
-    orientation: 2
+    orientation: 0
     cubeColor: 1
   - Id: 102
     horizontalPosition: 1
     vecticalPosition: 1
-    orientation: 1
+    orientation: 0
     cubeColor: 1
   - Id: 103
     horizontalPosition: 3
@@ -739,12 +739,12 @@ MonoBehaviour:
   - Id: 143
     horizontalPosition: -1
     vecticalPosition: 0
-    orientation: 1
+    orientation: 0
     cubeColor: 2
   - Id: 143
     horizontalPosition: 1
-    vecticalPosition: 1
-    orientation: 3
+    vecticalPosition: 0
+    orientation: 0
     cubeColor: 1
   showListWalls: 1
   listWalls: []
