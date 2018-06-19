@@ -14,7 +14,7 @@ public class TargetCubeSpawner : MonoBehaviour {
     {
         foreach(TargetCubeData targetCubeData in targetCubesData)
         {
-            Vector3 calculatedPosition = transform.position + new Vector3((float)targetCubeData.horizontalPosition * 0.25f, (float)targetCubeData.vecticalPosition * 0.25f, 0f);
+            Vector3 calculatedPosition = transform.position + new Vector3((float)targetCubeData.horizontalPosition * 0.25f, (float)targetCubeData.vecticalPosition * 0.5f, 0f);
             Vector3 orientation = new Vector3(0, 0, (float)targetCubeData.orientation * 90f);
             Quaternion calculatedRotation = Quaternion.Euler(orientation);
             TargetCube targetCube;
@@ -32,9 +32,9 @@ public class TargetCubeSpawner : MonoBehaviour {
         }
     }
 
-    public void SpawnWall(WallData wallData)
+    public void SpawnWall(List<WallData> wallsData)
     {
-        if (wallData != null)
+        foreach (WallData wallData in wallsData)
         {
             Wall wall;
             if (wallData.position == WallPosition.Top)

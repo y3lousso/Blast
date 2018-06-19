@@ -48,31 +48,33 @@ public class GameManager : MonoBehaviour {
         results = new Results();
         spawner = FindObjectOfType<TargetCubeSpawner>();
 
-        // Create offset
+        /* Create offset
         float offset = spawner.transform.position.z / targetCubeSpeed - 0.4f;
         Invoke("StartMusic", offset);
         InvokeRepeating("StartSpawning", 0f, 60f / audioData.beatPerMinute);
         Invoke("Finish", audioData.audioClip.length + audioData.startingOffset);
-
+        */
                 // Start AtmosphereManager to change color
-        AtmosphereManager.Instance.StartToggleColor(audioData.beatPerMinute, offset);
+        //AtmosphereManager.Instance.StartToggleColor(audioData.beatPerMinute, );
 
 
 
-        /** Old method 
+        // Old method 
         if(audioData.startingOffset < 0f)
         {
             Invoke("StartMusic", 0f);
             InvokeRepeating("StartSpawning", -audioData.startingOffset, 60f / audioData.beatPerMinute);
             Invoke("Finish", audioData.audioClip.length );
+            AtmosphereManager.Instance.StartToggleColor(audioData.beatPerMinute, 0f);
         }
         else
         {
-            Invoke("StartMusic", offset);
+            Invoke("StartMusic", audioData.startingOffset);
             InvokeRepeating("StartSpawning", 0f, 60f / audioData.beatPerMinute);
             Invoke("Finish", audioData.audioClip.length + audioData.startingOffset);
+            AtmosphereManager.Instance.StartToggleColor(audioData.beatPerMinute, 0f);
         }
-        */
+        
     }
 
     public void Finish()
@@ -93,7 +95,7 @@ public class GameManager : MonoBehaviour {
     private void StartSpawning()
     {
         spawner.SpawnTargetCubes(audioData.listCubes.FindAll(t => t.Id == currentIndex));
-        spawner.SpawnWall(audioData.listWalls.Find(w => w.Id == currentIndex));
+        spawner.SpawnWall(audioData.listWalls.FindAll(w => w.Id == currentIndex));
         currentIndex++;
         currentTimeIndicator = audioSource.time;
     }

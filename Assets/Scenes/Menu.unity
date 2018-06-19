@@ -1550,8 +1550,8 @@ MonoBehaviour:
   audioData: {fileID: 0}
   spawner: {fileID: 0}
   targetCubeSpeed: 7
-  slashAngleThreshold: 0.7
-  slashIntensityThreshold: 0.1
+  slashAngleThreshold: 0.65
+  slashIntensityThreshold: 0.08
   timeBeforeNextBeat: 0
   currentTimeIndicator: 0
   currentIndex: 0

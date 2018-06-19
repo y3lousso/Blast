@@ -165,6 +165,11 @@ public class AudioDataEditor : Editor {
         }
 
         EditorGUILayout.PropertyField(showListCubes);
+        EditorGUILayout.LabelField(((AudioData)target).listCubes.Count.ToString());
+        if (GUILayout.Button("Sort By Id"))
+        {
+            ((AudioData)target).listCubes.Sort((x, y) => x.Id.CompareTo(y.Id));
+        }
 
         if (showListCubes.boolValue)
         {
@@ -172,6 +177,7 @@ public class AudioDataEditor : Editor {
         }
 
         EditorGUILayout.PropertyField(showListWalls);
+        EditorGUILayout.LabelField(((AudioData)target).listWalls.Count.ToString());
 
         if (showListWalls.boolValue)
         {
