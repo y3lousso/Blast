@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aefec2bf72149c8499c31dcec1ae3eca, type: 3}
-  m_Name: escape
+  m_Name: Escape
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: d27b891fdf1903340aa438b505509ef4, type: 3}
   beatPerMinute: 175
