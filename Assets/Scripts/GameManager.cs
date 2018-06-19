@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour {
             Invoke("StartMusic", audioData.startingOffset);
             InvokeRepeating("StartSpawning", 0f, 60f / audioData.beatPerMinute);
             //Invoke("Finish", audioData.audioClip.length + audioData.startingOffset);
-            AtmosphereManager.Instance.StartToggleColor(audioData.beatPerMinute, 0f);
+            AtmosphereManager.Instance.StartToggleColor(audioData.beatPerMinute, audioData.startingOffset);
         }
         
     }
