@@ -9,7 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aefec2bf72149c8499c31dcec1ae3eca, type: 3}
+<<<<<<< HEAD:Assets/MusicsData/Escape.asset
+  m_Name: Escape
+=======
   m_Name: escapeSaved
+>>>>>>> cfc1e58b415c89969bde00aac8d19d1f639acf0e:Assets/MusicsData/DontModify/escapeSaved.asset
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: d27b891fdf1903340aa438b505509ef4, type: 3}
   beatPerMinute: 175

@@ -64,16 +64,16 @@ public class GameManager : MonoBehaviour {
         if(audioData.startingOffset < 0f)
         {
             Invoke("StartMusic", 0f);
+            AtmosphereManager.Instance.StartToggleColor(audioData.beatPerMinute, 0f);
             InvokeRepeating("StartSpawning", -audioData.startingOffset, 60f / audioData.beatPerMinute);
             //Invoke("Finish", audioData.audioClip.length );
-            AtmosphereManager.Instance.StartToggleColor(audioData.beatPerMinute, 0f);
         }
         else
         {
             Invoke("StartMusic", audioData.startingOffset);
+            AtmosphereManager.Instance.StartToggleColor(audioData.beatPerMinute, audioData.startingOffset);
             InvokeRepeating("StartSpawning", 0f, 60f / audioData.beatPerMinute);
             //Invoke("Finish", audioData.audioClip.length + audioData.startingOffset);
-            AtmosphereManager.Instance.StartToggleColor(audioData.beatPerMinute, audioData.startingOffset);
         }
         
     }
