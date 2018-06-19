@@ -39,7 +39,7 @@ MonoBehaviour:
   - Id: 15
     horizontalPosition: -1
     vecticalPosition: 0
-    orientation: 2
+    orientation: 0
     cubeColor: 1
   - Id: 15
     horizontalPosition: -3
