@@ -15,14 +15,17 @@ public abstract class SpawnableObject : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        lifeTime -= Time.deltaTime;
-        if (lifeTime < 0f)
+        if (!GameManager.Instance.isPaused)
         {
-            DestroyObject();
-        }
-        else
-        {
-            transform.Translate(-transform.forward * speed * Time.deltaTime);
+            lifeTime -= Time.deltaTime;
+            if (lifeTime < 0f)
+            {
+                DestroyObject();
+            }
+            else
+            {
+                transform.Translate(-transform.forward * speed * Time.deltaTime);
+            }
         }
     }
 

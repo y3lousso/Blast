@@ -18,11 +18,12 @@ public class GameManager : MonoBehaviour {
     public float slashIntensityThreshold = .5f;
 
     public float timeBeforeNextBeat = 0f;
-    public float currentTimeIndicator = 0;
     public int currentIndex = 0;
 
     public Results results = new Results();
     public float multiplier = 1f;
+
+    public bool isPaused = false;
 
     public void Awake()
     {
@@ -64,14 +65,14 @@ public class GameManager : MonoBehaviour {
         {
             Invoke("StartMusic", 0f);
             InvokeRepeating("StartSpawning", -audioData.startingOffset, 60f / audioData.beatPerMinute);
-            Invoke("Finish", audioData.audioClip.length );
+            //Invoke("Finish", audioData.audioClip.length );
             AtmosphereManager.Instance.StartToggleColor(audioData.beatPerMinute, 0f);
         }
         else
         {
             Invoke("StartMusic", audioData.startingOffset);
             InvokeRepeating("StartSpawning", 0f, 60f / audioData.beatPerMinute);
-            Invoke("Finish", audioData.audioClip.length + audioData.startingOffset);
+            //Invoke("Finish", audioData.audioClip.length + audioData.startingOffset);
             AtmosphereManager.Instance.StartToggleColor(audioData.beatPerMinute, 0f);
         }
         
@@ -94,9 +95,25 @@ public class GameManager : MonoBehaviour {
 
     private void StartSpawning()
     {
-        spawner.SpawnTargetCubes(audioData.listCubes.FindAll(t => t.Id == currentIndex));
-        spawner.SpawnWall(audioData.listWalls.FindAll(w => w.Id == currentIndex));
-        currentIndex++;
-        currentTimeIndicator = audioSource.time;
+        if (!isPaused)
+        {
+            spawner.SpawnTargetCubes(audioData.listCubes.FindAll(t => t.Id == currentIndex));
+            spawner.SpawnWall(audioData.listWalls.FindAll(w => w.Id == currentIndex));
+            currentIndex++;
+        }else if(audioSource.time >= audioSource.clip.length){
+            Finish();
+        }
+    }
+
+    public void Pause()
+    {
+        isPaused = true;
+        audioSource.Pause();        
+    }
+
+    public void Unpause()
+    {
+        audioSource.UnPause();
+        isPaused = false;
     }
 }
