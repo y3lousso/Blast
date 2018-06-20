@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour {
 
     private void StartSpawning()
     {
-        if (!isPaused && audioSource.isPlaying)
+        if (!isPaused)
         {
             spawner.SpawnTargetCubes(audioData.listCubes.FindAll(t => t.Id == currentIndex));
             spawner.SpawnWall(audioData.listWalls.FindAll(w => w.Id == currentIndex));

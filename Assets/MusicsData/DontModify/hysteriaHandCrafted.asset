@@ -347,7 +347,7 @@ MonoBehaviour:
     orientation: 0
     cubeColor: 2
   - Id: 68
-    horizontalPosition: -1
+    horizontalPosition: 1
     vecticalPosition: 1
     orientation: 1
     cubeColor: 1
@@ -627,29 +627,24 @@ MonoBehaviour:
     orientation: 0
     cubeColor: 1
   - Id: 126
-    horizontalPosition: -1
-    vecticalPosition: 0
-    orientation: 0
-    cubeColor: 2
-  - Id: 126
-    horizontalPosition: 1
+    horizontalPosition: 3
     vecticalPosition: 0
     orientation: 0
     cubeColor: 1
-  - Id: 127
+  - Id: 126
     horizontalPosition: -3
     vecticalPosition: 0
     orientation: 0
     cubeColor: 2
   - Id: 127
-    horizontalPosition: 3
+    horizontalPosition: 1
     vecticalPosition: 0
     orientation: 0
     cubeColor: 1
   - Id: 127
     horizontalPosition: -1
     vecticalPosition: 0
-    orientation: 3
+    orientation: 0
     cubeColor: 2
   - Id: 128
     horizontalPosition: 1
@@ -1092,29 +1087,44 @@ MonoBehaviour:
     orientation: 0
     cubeColor: 1
   - Id: 215
-    horizontalPosition: -1
-    vecticalPosition: 0
-    orientation: 3
-    cubeColor: 2
-  - Id: 216
-    horizontalPosition: -1
-    vecticalPosition: 0
-    orientation: 1
-    cubeColor: 2
-  - Id: 219
-    horizontalPosition: 1
-    vecticalPosition: 0
-    orientation: 3
-    cubeColor: 1
-  - Id: 220
-    horizontalPosition: 1
-    vecticalPosition: 0
-    orientation: 1
-    cubeColor: 1
-  - Id: 221
     horizontalPosition: 1
     vecticalPosition: 0
     orientation: 0
+    cubeColor: 2
+  - Id: 215
+    horizontalPosition: 3
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 216
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 217
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 219
+    horizontalPosition: -3
+    vecticalPosition: 1
+    orientation: 0
+    cubeColor: 2
+  - Id: 220
+    horizontalPosition: -1
+    vecticalPosition: 1
+    orientation: 1
+    cubeColor: 1
+  - Id: 221
+    horizontalPosition: -3
+    vecticalPosition: 1
+    orientation: 0
+    cubeColor: 2
+  - Id: 222
+    horizontalPosition: 3
+    vecticalPosition: 0
+    orientation: 1
     cubeColor: 1
   - Id: 223
     horizontalPosition: -3
@@ -1290,6 +1300,206 @@ MonoBehaviour:
     horizontalPosition: -1
     vecticalPosition: 0
     orientation: 0
+    cubeColor: 2
+  - Id: 250
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 251
+    horizontalPosition: -3
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 251
+    horizontalPosition: 3
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 252
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 253
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 254
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 255
+    horizontalPosition: -3
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 256
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 2
+    cubeColor: 2
+  - Id: 257
+    horizontalPosition: 1
+    vecticalPosition: 1
+    orientation: 0
+    cubeColor: 1
+  - Id: 258
+    horizontalPosition: 1
+    vecticalPosition: 1
+    orientation: 0
+    cubeColor: 1
+  - Id: 259
+    horizontalPosition: 3
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 260
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 1
+    cubeColor: 2
+  - Id: 261
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 3
+    cubeColor: 1
+  - Id: 262
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 1
+    cubeColor: 2
+  - Id: 263
+    horizontalPosition: -3
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 264
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 265
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 266
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 267
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 268
+    horizontalPosition: -3
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 269
+    horizontalPosition: 3
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 270
+    horizontalPosition: 3
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 271
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 272
+    horizontalPosition: 3
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 273
+    horizontalPosition: -3
+    vecticalPosition: 1
+    orientation: 3
+    cubeColor: 2
+  - Id: 274
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 275
+    horizontalPosition: -3
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 276
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 277
+    horizontalPosition: 3
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 278
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 1
+    cubeColor: 2
+  - Id: 279
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 3
+    cubeColor: 1
+  - Id: 280
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 1
+    cubeColor: 2
+  - Id: 281
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 281
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 282
+    horizontalPosition: -3
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 282
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 283
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 283
+    horizontalPosition: 3
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 284
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 284
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
     cubeColor: 1
   - Id: 287
     horizontalPosition: -1
@@ -1456,7 +1666,7 @@ MonoBehaviour:
     vecticalPosition: 0
     orientation: 0
     cubeColor: 2
-  - Id: 315
+  - Id: 316
     horizontalPosition: 1
     vecticalPosition: 0
     orientation: 0
@@ -1465,7 +1675,7 @@ MonoBehaviour:
     horizontalPosition: -1
     vecticalPosition: 0
     orientation: 0
-    cubeColor: 1
+    cubeColor: 2
   - Id: 317
     horizontalPosition: 3
     vecticalPosition: 0
@@ -1486,10 +1696,155 @@ MonoBehaviour:
     vecticalPosition: 0
     orientation: 0
     cubeColor: 2
-  - Id: 6143
+  - Id: 319
+    horizontalPosition: -3
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 320
     horizontalPosition: 3
     vecticalPosition: 0
     orientation: 0
     cubeColor: 1
-  showListWalls: 1
+  - Id: 321
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 322
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 323
+    horizontalPosition: -3
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 324
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 325
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 326
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 327
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 327
+    horizontalPosition: 3
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 328
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 329
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 331
+    horizontalPosition: -3
+    vecticalPosition: 1
+    orientation: 0
+    cubeColor: 2
+  - Id: 332
+    horizontalPosition: -1
+    vecticalPosition: 1
+    orientation: 1
+    cubeColor: 1
+  - Id: 333
+    horizontalPosition: -3
+    vecticalPosition: 1
+    orientation: 0
+    cubeColor: 2
+  - Id: 334
+    horizontalPosition: 3
+    vecticalPosition: 0
+    orientation: 1
+    cubeColor: 1
+  - Id: 335
+    horizontalPosition: -3
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 336
+    horizontalPosition: 3
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 337
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 338
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 339
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 339
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 340
+    horizontalPosition: -3
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 340
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 341
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 341
+    horizontalPosition: 3
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 342
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  - Id: 342
+    horizontalPosition: -1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 343
+    horizontalPosition: -3
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 2
+  - Id: 343
+    horizontalPosition: 1
+    vecticalPosition: 0
+    orientation: 0
+    cubeColor: 1
+  showListWalls: 0
   listWalls: []
