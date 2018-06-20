@@ -24,7 +24,7 @@ MonoBehaviour:
   isSameColorChance: 0.5
   signatureFilePath: MusicsData/insaneGenerator.txt
   patternManager: {fileID: 11400000, guid: 4ce588df0101bbb40a67b382aa16187e, type: 2}
-  showListCubes: 1
+  showListCubes: 0
   listCubes:
   - Id: 0
     horizontalPosition: -1
@@ -1018,9 +1018,111 @@ MonoBehaviour:
     cubeColor: 1
   showListWalls: 1
   listWalls:
+  - Id: 8
+    position: 1
+    length: 2
+  - Id: 16
+    position: -1
+    length: 2
   - Id: 64
     position: 1
-    length: 4
+    length: 2
   - Id: 72
-    position: 1
+    position: -1
+    length: 2
+  - Id: 100
+    position: -3
+    length: 2
+  - Id: 104
+    position: 3
+    length: 2
+  - Id: 108
+    position: -3
+    length: 2
+  - Id: 112
+    position: 3
+    length: 2
+  - Id: 116
+    position: -3
+    length: 2
+  - Id: 120
+    position: 3
+    length: 2
+  - Id: 124
+    position: -3
+    length: 2
+  - Id: 130
+    position: -3
+    length: 2
+  - Id: 134
+    position: 3
+    length: 2
+  - Id: 138
+    position: -3
+    length: 2
+  - Id: 142
+    position: 3
+    length: 2
+  - Id: 146
+    position: -3
+    length: 2
+  - Id: 150
+    position: 3
+    length: 2
+  - Id: 154
+    position: -3
+    length: 2
+  - Id: 158
+    position: 3
+    length: 2
+  - Id: 162
+    position: -3
+    length: 1
+  - Id: 190
+    position: 3
     length: 4
+  - Id: 200
+    position: -3
+    length: 4
+  - Id: 224
+    position: -3
+    length: 1
+  - Id: 226
+    position: 3
+    length: 1
+  - Id: 228
+    position: -3
+    length: 1
+  - Id: 230
+    position: 3
+    length: 1
+  - Id: 232
+    position: -3
+    length: 1
+  - Id: 234
+    position: 3
+    length: 1
+  - Id: 236
+    position: -3
+    length: 1
+  - Id: 240
+    position: 3
+    length: 1
+  - Id: 242
+    position: -3
+    length: 1
+  - Id: 244
+    position: 3
+    length: 1
+  - Id: 246
+    position: -3
+    length: 1
+  - Id: 248
+    position: 3
+    length: 1
+  - Id: 250
+    position: -3
+    length: 1
+  - Id: 252
+    position: 3
+    length: 1

@@ -27,6 +27,7 @@ public class AudioManager : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
         audioLowPassFilter = GetComponent<AudioLowPassFilter>();
     }
+
     // Use this for initialization
     void Start () {
 		

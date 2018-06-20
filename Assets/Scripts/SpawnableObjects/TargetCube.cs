@@ -23,9 +23,6 @@ public class TargetCube : SpawnableObject
         }
 
         GameManager.Instance.results.Score += (int)(123f * GameManager.Instance.multiplier);
-
-        Debug.Log(GameManager.Instance.results.Score);
-
         Destroy(p.gameObject, 1f);
         Destroy(gameObject);
     }
