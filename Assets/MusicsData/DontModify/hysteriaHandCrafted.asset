@@ -24,7 +24,7 @@ MonoBehaviour:
   isSameColorChance: 0.5
   signatureFilePath: MusicsData/hysteria.txt
   patternManager: {fileID: 11400000, guid: 4ce588df0101bbb40a67b382aa16187e, type: 2}
-  showListCubes: 0
+  showListCubes: 1
   listCubes:
   - Id: 0
     horizontalPosition: -1
@@ -1665,7 +1665,7 @@ MonoBehaviour:
     horizontalPosition: -1
     vecticalPosition: 0
     orientation: 0
-    cubeColor: 2
+    cubeColor: 1
   - Id: 316
     horizontalPosition: 1
     vecticalPosition: 0
