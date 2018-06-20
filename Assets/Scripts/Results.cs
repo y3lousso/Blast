@@ -10,6 +10,20 @@ public class Results
     [SerializeField] public int CorrectHit { get; set; } = 0;
     [SerializeField] public int MaxHit { get; set; } = 0;
     [SerializeField] public int Score { get; set; } = 0;
+
+    public Results()
+    {
+
+    }
+
+    public Results(Results r)
+    {
+        this.Date = r.Date;
+        this.Difficulty = r.Difficulty;
+        this.CorrectHit = r.CorrectHit;
+        this.MaxHit = r.MaxHit;
+        this.Score = r.Score;
+    }
 }
 
 public enum Difficulty

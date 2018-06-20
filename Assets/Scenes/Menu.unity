@@ -1553,9 +1553,6 @@ MonoBehaviour:
   targetCubeSpeed: 7
   slashAngleThreshold: 0.65
   slashIntensityThreshold: 0.06
-  timeBeforeNextBeat: 0
-  currentIndex: 0
-  multiplier: 1
   isPaused: 0
 --- !u!4 &187913869
 Transform:

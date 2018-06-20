@@ -27,8 +27,6 @@ public class TargetCubeSpawner : MonoBehaviour {
                 targetCube = Instantiate(targetCubeRedPrefab, calculatedPosition, calculatedRotation);
             }
             targetCube.cubeColor = targetCubeData.cubeColor;
-
-            GameManager.Instance.results.MaxHit++;
         }
     }
 

@@ -11,9 +11,11 @@ public class PauseUI : MonoBehaviour {
     [SerializeField] private VRTK.VRTK_UIPointer uiPointer;
     [SerializeField] private VRTK.VRTK_Pointer pointer;
 
+    [SerializeField] private Saber leftSaber;
+    [SerializeField] private Saber rightSaber;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         canvas.SetActive(false);
         uiPointer.enabled = false;
@@ -32,6 +34,8 @@ public class PauseUI : MonoBehaviour {
         canvas.SetActive(true);
         uiPointer.enabled = true;
         pointer.enabled = true;
+        leftSaber.gameObject.SetActive(false);
+        rightSaber.gameObject.SetActive(false);
     }
 
     private void Unpause()
@@ -40,6 +44,8 @@ public class PauseUI : MonoBehaviour {
         canvas.SetActive(false);
         uiPointer.enabled = false;
         pointer.enabled = false;
+        leftSaber.gameObject.SetActive(true);
+        rightSaber.gameObject.SetActive(true);
     }
 
     public void OnContinueClicked()
@@ -49,6 +55,6 @@ public class PauseUI : MonoBehaviour {
 
     public void OnQuitClicked()
     {
-        SceneDataManager.Instance.GoToMenuScene();
+        GameManager.Instance.Finish();
     }
 }

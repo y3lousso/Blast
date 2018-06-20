@@ -1016,7 +1016,7 @@ MonoBehaviour:
     vecticalPosition: 0
     orientation: 0
     cubeColor: 1
-  showListWalls: 1
+  showListWalls: 0
   listWalls:
   - Id: 8
     position: 1

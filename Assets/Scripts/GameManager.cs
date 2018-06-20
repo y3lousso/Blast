@@ -6,10 +6,12 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager Instance { get; set; }
 
+    [Header("Inputs")]
     private AudioSource audioSource;
     public AudioData audioData;
     public TargetCubeSpawner spawner;
 
+    [Header("Settings")]
     [Range(1, 10)]
     public float targetCubeSpeed = 5f;
     [Range(0, 1)]
@@ -17,13 +19,12 @@ public class GameManager : MonoBehaviour {
     [Range(0, 1)]
     public float slashIntensityThreshold = .5f;
 
-    public float timeBeforeNextBeat = 0f;
-    public int currentIndex = 0;
+    private float timeBeforeNextBeat = 0f;
+    private int currentIndex = 0;
 
-    public Results results = new Results();
-    public float multiplier = 1f;
-
+    [Header("Others")]
     public bool isPaused = false;
+    public Results results;
 
     public void Awake()
     {
@@ -43,10 +44,18 @@ public class GameManager : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
     }
 
+    private void Update()
+    {
+        if(audioSource != null && audioSource.clip != null && audioSource.time >= audioData.audioClip.length - 0.1f)
+        {
+            Finish();
+        }
+    }
+
     // Use this for initialization
     public void Play ()
     {
-        results = new Results();
+        results = null;
         spawner = FindObjectOfType<TargetCubeSpawner>();
         currentIndex = 0;
 
@@ -61,16 +70,15 @@ public class GameManager : MonoBehaviour {
             Invoke("StartMusic", audioData.startingOffset);
             AtmosphereManager.Instance.StartToggleColor(audioData.beatPerMinute, audioData.startingOffset);
             InvokeRepeating("StartSpawning", 0f, 60f / audioData.beatPerMinute);
-        }
-        
+        }       
     }
 
     public void Finish()
     {
         CancelInvoke("StartSpawning");
 
-        results.Date = System.DateTime.Today.ToString();
-        results.Difficulty = audioData.difficulty;
+        results = new Results(ScoreManager.Instance.results);
+
         SceneDataManager.Instance.GoToMenuScene();
     }
 
@@ -79,6 +87,7 @@ public class GameManager : MonoBehaviour {
         audioSource.clip = audioData.audioClip;
         audioSource.Play();
     }
+    
 
     private void StartSpawning()
     {
@@ -87,8 +96,6 @@ public class GameManager : MonoBehaviour {
             spawner.SpawnTargetCubes(audioData.listCubes.FindAll(t => t.Id == currentIndex));
             spawner.SpawnWall(audioData.listWalls.FindAll(w => w.Id == currentIndex));
             currentIndex++;
-        }else if(!isPaused && !audioSource.isPlaying && currentIndex > 20){
-            Finish();
         }
     }
 

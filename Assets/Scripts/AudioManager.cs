@@ -40,11 +40,17 @@ public class AudioManager : MonoBehaviour {
 
     public void OnHeadsetCollisionDetected()
     {
-        audioLowPassFilter.cutoffFrequency = 1000f;
+        if (audioLowPassFilter != null)
+        {
+            audioLowPassFilter.cutoffFrequency = 1000f;
+        }
     }
 
     public void OnHeadsetCollisionEnded()
     {
-        audioLowPassFilter.cutoffFrequency = 22000f;
+        if (audioLowPassFilter != null)
+        {
+            audioLowPassFilter.cutoffFrequency = 22000f;
+        }
     }
 }
