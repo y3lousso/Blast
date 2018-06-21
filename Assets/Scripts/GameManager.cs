@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour {
     public void Finish()
     {
         CancelInvoke("StartSpawning");
+        isPaused = false;
 
         results = new Results(ScoreManager.Instance.results);
 
